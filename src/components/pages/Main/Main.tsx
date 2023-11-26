@@ -1,15 +1,32 @@
 import React from 'react';
 import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import styles from './Main.module.scss';
+import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 
 const Main = () => {
   return (
     <MainTemplate>
       <div className={styles.container}>
-        <div className={styles.players}>Players</div>
-        <div className={styles.chat}>Chat</div>
-        <div className={styles.role}>Role</div>
-        <div className={styles.period}>Period</div>
+        <div className={styles.players}>
+          <EssentialBlock padding='16px'>
+            Players
+          </EssentialBlock>
+        </div>
+        <div className={styles.chat}>
+          <EssentialBlock padding='16px'>
+            Chat
+          </EssentialBlock>
+        </div>
+        <div className={styles.role}>
+          <EssentialBlock padding='16px'>
+            Role
+          </EssentialBlock>
+        </div>
+        <div className={styles.period}>
+          <EssentialBlock padding='16px'>
+            Period
+          </EssentialBlock>
+        </div>
       </div>
     </MainTemplate>
   );

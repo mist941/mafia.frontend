@@ -1,12 +1,12 @@
 import React from 'react';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 
-const Header = () => {
+const Sidebar = () => {
   return (
-    <EssentialBlock padding='12px 24px'>
-      Header
+    <EssentialBlock>
+      Sidebar
     </EssentialBlock>
   );
 };
 
-export default Header;
+export default Sidebar;

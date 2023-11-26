@@ -1,3 +1,10 @@
 :root {
-  --silver-whisper: #EFF2F5;
+  --bg-main-base: #EFF2F5;
+  --bg-main-light: #FFFFFF;
+
+  &[data-theme="dark"] {
+    --bg-main-base: #12171C;
+    --bg-main-light: #171E26;
+  }
 }
+
