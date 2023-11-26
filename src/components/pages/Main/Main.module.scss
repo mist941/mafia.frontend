@@ -1,0 +1,27 @@
+.container {
+  height: 100%;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 60px 1fr;
+  gap: 16px;
+  grid-template-areas:
+    "Role Period"
+    "Players Chat";
+}
+
+.players {
+  grid-area: Players;
+}
+
+.chat {
+  grid-area: Chat;
+}
+
+.role {
+  grid-area: Role;
+}
+
+.period {
+  grid-area: Period;
+}
