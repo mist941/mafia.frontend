@@ -1,29 +1,28 @@
 .container {
-  height: 100%;
   display: grid;
+  grid-auto-columns: 1fr;
   grid-auto-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 60px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 16px;
   grid-template-areas:
-    "Role Period"
-    "Players Chat";
+    "Block2 Block2 Block2"
+    "Block1 Block3 Block4"
+    "Block1 Block5 Block6";
 }
 
-.block {
-  &:nth-child(1) {
-    grid-area: Players;
-  }
+.players {
+  grid-area: Players;
+}
 
-  &:nth-child(2) {
-    grid-area: Chat;
-  }
+.chat {
+  grid-area: Chat;
+}
 
-  &:nth-child(3) {
-    grid-area: Role;
-  }
+.role {
+  grid-area: Role;
+}
 
-  &:nth-child(4) {
-    grid-area: Period;
-  }
+.period {
+  grid-area: Period;
 }
