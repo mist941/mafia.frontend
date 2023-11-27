@@ -1,10 +1,9 @@
 import paths from './paths';
-import Main from '../components/pages/Main/Main';
-
+import MainPage from '../components/pages/MainPage/MainPage';
 
 export default [
   {
     path: paths.main,
-    element: Main,
+    element: MainPage,
   }
 ];

@@ -1,9 +1,9 @@
 import React from 'react';
 import MainTemplate from '../../templates/MainTemplate/MainTemplate';
-import styles from './Main.module.scss';
+import styles from './MainPage.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 
-const Main = () => {
+const MainPage = () => {
   return (
     <MainTemplate>
       <div className={styles.container}>
@@ -32,4 +32,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;

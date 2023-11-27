@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from 'react';
 import styles from './EssentialBlock.module.scss';
 
 interface EssentialBlockProps {
-  children: ReactNode;
+  children?: ReactNode;
   padding?: string;
 }
 

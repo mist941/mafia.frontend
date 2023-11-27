@@ -10,18 +10,20 @@
     "Players Chat";
 }
 
-.players {
-  grid-area: Players;
-}
+.block {
+  &:nth-child(1) {
+    grid-area: Players;
+  }
 
-.chat {
-  grid-area: Chat;
-}
+  &:nth-child(2) {
+    grid-area: Chat;
+  }
 
-.role {
-  grid-area: Role;
-}
+  &:nth-child(3) {
+    grid-area: Role;
+  }
 
-.period {
-  grid-area: Period;
+  &:nth-child(4) {
+    grid-area: Period;
+  }
 }
