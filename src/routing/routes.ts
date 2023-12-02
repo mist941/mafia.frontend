@@ -1,5 +1,7 @@
 import paths from './paths';
-import MainPage from '../components/pages/MainPage/MainPage';
+import {lazy} from 'react';
+
+const MainPage = lazy(() => import('../components/pages/MainPage/MainPage'));
 
 export default [
   {
