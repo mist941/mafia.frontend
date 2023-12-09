@@ -1,10 +1,18 @@
 :root {
   --bg-main-base: #EFF2F5;
   --bg-main-light: #FFFFFF;
+  --field-border: #DFE5EC;
+  --field-color: #4C6580;
+  --field-hover: #9FB2C6;
+  --field-focus: #8099B3;
 
   &[data-theme="dark"] {
     --bg-main-base: #12171C;
     --bg-main-light: #171E26;
+    --field-border: #263340;
+    --field-color: #4C6580;
+    --field-hover: #8099B3;
+    --field-focus: #9FB2C6;
   }
 }
 

@@ -1,8 +1,19 @@
 .input {
   border-radius: 8px;
-  border: 1px solid #DFE5EC;
-  background: var(--bg-main-base);
+  border: 1px solid var(--field-border);
+  background: transparent;
   font-family: Karla, sans-serif;
   padding: 12px;
-  color: #4C6580;
+  color: var(--field-color);
+  width: 100%;
+  transition: var(--transition);
+
+  &:hover {
+    border: 1px solid var(--field-hover);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--field-focus);
+    outline: unset;
+  }
 }

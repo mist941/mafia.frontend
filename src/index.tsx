@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import store from './store/store';
+import { ApolloProvider } from '@apollo/client';
 import {Provider} from 'react-redux';
+import reportWebVitals from './reportWebVitals';
+import './styles/index.scss';
+import store from './store/store';
+import {client} from './graphql/apolo';
+import App from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App/>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 

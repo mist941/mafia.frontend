@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Ivan Statkevich",
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -15,6 +16,8 @@
     "@types/react-dom": "^18.2.15",
     "@types/react-redux": "^7.1.31",
     "classnames": "^2.3.2",
+    "formik": "^2.4.5",
+    "graphql": "^16.8.1",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

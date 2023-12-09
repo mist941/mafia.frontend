@@ -1,4 +1,4 @@
-import React, {lazy, useLayoutEffect} from 'react';
+import React, {lazy, useEffect} from 'react';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import routes from './routing/routes';
 import {useSelector} from 'react-redux';
@@ -13,7 +13,7 @@ function App() {
     routes.map(route => ({...route, element: <route.element/>}))
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');
   }, []);
 

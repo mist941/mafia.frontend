@@ -6,7 +6,6 @@ interface EssentialBlockProps {
   padding?: string;
 }
 
-
 const EssentialBlock: FC<EssentialBlockProps> = ({children, padding = 0}) => {
   return (
     <section

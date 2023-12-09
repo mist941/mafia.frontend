@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {UserI} from '../types';
+import {UserI} from '../types/user';
 
 const userFromStorage = localStorage.getItem('user');
 let currentUser: UserI | null = null;
@@ -8,9 +8,8 @@ if (userFromStorage) {
   currentUser = JSON.parse(userFromStorage)
 }
 
-
 interface UserState {
-  user: UserI | null;
+  user:UserI | null;
 }
 
 const initialState: UserState = {
