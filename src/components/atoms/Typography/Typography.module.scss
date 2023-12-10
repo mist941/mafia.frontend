@@ -1,0 +1,72 @@
+.h1, .h2, .h3, .h4, .h5, .p {
+  color: var(--text-base);
+  font-weight: 400;
+}
+
+.h1 {
+  font-size: 40px;
+}
+
+.h2 {
+  font-size: 32px;
+}
+
+.h3 {
+  font-size: 28px;
+}
+
+.h4 {
+  font-size: 24px;
+}
+
+.h5 {
+  font-size: 22px;
+}
+
+.p {
+  font-size: 20px;
+
+  &.l {
+    font-size: 18px;
+  }
+
+  &.m {
+    font-size: 16px;
+  }
+
+  &.s {
+    font-size: 14px;
+  }
+
+  &.xs {
+    font-size: 12px;
+  }
+}
+
+.light {
+  color: var(--text-light);
+}
+
+.success {
+  color: var(--text-success);
+}
+
+.error {
+  color: var(--text-error);
+}
+
+.secondary {
+  color: var(--text-secondary);
+}
+
+.disable {
+  color: var(--text-disable);
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}
