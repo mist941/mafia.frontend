@@ -1,7 +1,7 @@
 import React, {FC, ReactNode} from 'react';
 import styles from './AuthTemplate.module.scss';
 
-interface AuthTemplateProps {
+type AuthTemplateProps ={
   children: ReactNode;
 }
 

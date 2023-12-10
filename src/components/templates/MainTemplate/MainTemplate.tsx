@@ -3,7 +3,7 @@ import styles from './MainTemplate.module.scss';
 import Header from '../../organisms/Header/Header';
 import Sidebar from '../../organisms/Sidebar/Sidebar';
 
-interface MainTableProps {
+type MainTableProps = {
   children: ReactNode;
 }
 
