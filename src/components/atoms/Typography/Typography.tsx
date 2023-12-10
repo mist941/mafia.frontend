@@ -133,6 +133,7 @@ const Paragraph: FC<ParagraphProps> = (
       styles[size],
       styles[color],
       styles[weight],
+      rest.className
     )}
   >
     {children}
