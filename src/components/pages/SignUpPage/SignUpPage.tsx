@@ -9,9 +9,9 @@ import {SignResponseI, SignUpRequestI} from '../../../types/auth';
 const SignUpPage = () => {
   const [signUp] = useMutation(SIGN_UP);
 
-  const handleSignUp = async (params: SignUpRequestI) => {
+  const handleSignUp = async (values: SignUpRequestI) => {
     const response: FetchResult<SignResponseI> = await signUp({
-      variables: {signupInput: params},
+      variables: {signupInput: values},
     });
     localStorage.setItem('currentUser', JSON.stringify(response.data?.user));
   }

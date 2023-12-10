@@ -13,7 +13,7 @@ type SignInFormProps = {
   send: (params: SignInRequestI) => void;
 }
 
-const SignInForm: FC<SignInFormProps> = ({send}) => {
+const SignInForm: FC<SignInFormProps> = () => {
   const navigate = useNavigate();
 
   const redirectToSignUpPage = (e: React.MouseEvent<HTMLButtonElement>) => {

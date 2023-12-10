@@ -6,7 +6,7 @@ interface LabelProps {
 }
 
 const Label: FC<LabelProps> = ({label}) => {
-  return <Typography.Paragraph size='xs'>{label}</Typography.Paragraph>;
+  return <Typography.Paragraph size='s' color='light'>{label}</Typography.Paragraph>;
 };
 
 export default Label;
