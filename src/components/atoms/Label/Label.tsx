@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
-import styles from './Label.module.scss';
+import Typography from '../Typography/Typography';
 
 interface LabelProps {
   label: string;
 }
 
 const Label: FC<LabelProps> = ({label}) => {
-  return <p className={styles.label}>{label}</p>;
+  return <Typography.Paragraph size='xs'>{label}</Typography.Paragraph>;
 };
 
 export default Label;

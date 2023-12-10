@@ -2,9 +2,9 @@ import {DetailedHTMLProps, FC, HTMLAttributes} from 'react';
 import styles from './Typography.module.scss';
 import classNames from 'classnames';
 
-type ParagraphSizes = 'l' | 'm' | 's' | 'xs';
-type TypographyColors = 'light' | 'success' | 'error' | 'secondary' | 'disable';
-type TypographyWeight = 'medium' | 'bold';
+type ParagraphSizes = 'xl' | 'l' | 'm' | 's' | 'xs';
+type TypographyColors = 'base' | 'light' | 'success' | 'error' | 'secondary' | 'disable';
+type TypographyWeight = 'regular' | 'medium' | 'bold';
 
 type HeadingProps = {
   color?: TypographyColors;
@@ -17,7 +17,14 @@ type ParagraphProps = {
   weight?: TypographyWeight;
 } & DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>;
 
-const Heading1: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}) => (
+const Heading1: FC<HeadingProps> = (
+  {
+    children,
+    color = 'base',
+    weight = 'regular',
+    ...rest
+  }
+) => (
   <h1
     {...rest}
     className={classNames(
@@ -30,7 +37,14 @@ const Heading1: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}
   </h1>
 );
 
-const Heading2: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}) => (
+const Heading2: FC<HeadingProps> = (
+  {
+    children,
+    color = 'base',
+    weight = 'regular',
+    ...rest
+  }
+) => (
   <h2
     {...rest}
     className={classNames(
@@ -43,7 +57,14 @@ const Heading2: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}
   </h2>
 );
 
-const Heading3: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}) => (
+const Heading3: FC<HeadingProps> = (
+  {
+    children,
+    color = 'base',
+    weight = 'regular',
+    ...rest
+  }
+) => (
   <h3
     {...rest}
     className={classNames(
@@ -56,7 +77,14 @@ const Heading3: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}
   </h3>
 );
 
-const Heading4: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}) => (
+const Heading4: FC<HeadingProps> = (
+  {
+    children,
+    color = 'base',
+    weight = 'regular',
+    ...rest
+  }
+) => (
   <h4
     {...rest}
     className={classNames(
@@ -69,7 +97,14 @@ const Heading4: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}
   </h4>
 );
 
-const Heading5: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}) => (
+const Heading5: FC<HeadingProps> = (
+  {
+    children,
+    color = 'base',
+    weight = 'regular',
+    ...rest
+  }
+) => (
   <h5
     {...rest}
     className={classNames(
@@ -85,9 +120,9 @@ const Heading5: FC<HeadingProps> = ({children, color = '', weight = '', ...rest}
 const Paragraph: FC<ParagraphProps> = (
   {
     children,
-    size = '',
-    color = '',
-    weight = '',
+    size = 'xl',
+    color = 'base',
+    weight = 'regular',
     ...rest
   }
 ) => (

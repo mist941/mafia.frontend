@@ -7,7 +7,7 @@ const SignUpForm = () => {
   return (
     <form>
       <EssentialBlock padding='25px'>
-        <Button type='submit'>
+        <Button type='submit' styled='secondary'>
           Create account
         </Button>
         <Typography.Paragraph>Or</Typography.Paragraph>
