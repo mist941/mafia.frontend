@@ -9,7 +9,7 @@ import {SignResponseI, SignUpRequestI} from '../../../types/auth';
 const SignUpPage = () => {
   const [signUp] = useMutation(SIGN_UP);
 
-  const createAccount = async (params: SignUpRequestI) => {
+  const handleSignUp = async (params: SignUpRequestI) => {
     const response: FetchResult<SignResponseI> = await signUp({
       variables: {signupInput: params},
     });
@@ -19,7 +19,7 @@ const SignUpPage = () => {
   return (
     <AuthTemplate>
       <div className={styles.formWrap}>
-        <SignUpForm send={createAccount}/>
+        <SignUpForm send={handleSignUp}/>
       </div>
     </AuthTemplate>
   );

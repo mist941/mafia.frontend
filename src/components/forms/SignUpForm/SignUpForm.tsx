@@ -24,25 +24,25 @@ const SignUpForm: FC<SignUpFormProps> = ({send}) => {
   return (
     <>
       <div className={styles.logoWrap}><Logo/></div>
-      <EssentialBlock padding="25px">
+      <EssentialBlock padding='25px'>
         <form className={styles.signUpForm}>
           <Typography.Heading3>
             Sign Up
           </Typography.Heading3>
           <div className={styles.fieldsWrap}>
-            <InputField type="text" placeholder="Enter username"/>
-            <InputField type="email" placeholder="Enter email"/>
-            <InputField type="password" placeholder="Enter password"/>
+            <InputField type='text' placeholder='Enter username'/>
+            <InputField type='email' placeholder='Enter email'/>
+            <InputField type='password' placeholder='Enter password'/>
           </div>
           <div className={styles.controls}>
-            <Button type="submit">
+            <Button type='submit'>
               Create account
             </Button>
-            <Typography.Paragraph size="s" color="disable">
+            <Typography.Paragraph size='s' color='disable'>
               Or
             </Typography.Paragraph>
             <Button
-              styled="secondary-transparent"
+              styled='secondary-transparent'
               onClick={redirectToSignInPage}
             >
               Sign in

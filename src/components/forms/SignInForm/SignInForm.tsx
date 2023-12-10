@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import Button from '../../atoms/Button/Button';
 import Typography from '../../atoms/Typography/Typography';
@@ -7,8 +7,13 @@ import {useNavigate} from 'react-router-dom';
 import paths from '../../../routing/paths';
 import Logo from '../../atoms/Logo/Logo';
 import InputField from '../../molecules/InputField/InputField';
+import {SignInRequestI} from '../../../types/auth';
 
-const SignInForm = () => {
+type SignInFormProps = {
+  send: (params: SignInRequestI) => void;
+}
+
+const SignInForm: FC<SignInFormProps> = ({send}) => {
   const navigate = useNavigate();
 
   const redirectToSignUpPage = (e: React.MouseEvent<HTMLButtonElement>) => {
