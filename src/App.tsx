@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {RootState} from './store/store';
@@ -16,7 +16,9 @@ function App() {
   }, []);
 
   return (
-    <RouterProvider router={router}/>
+    <Suspense>
+      <RouterProvider router={router}/>
+    </Suspense>
   );
 }
 
