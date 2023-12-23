@@ -1,6 +1,6 @@
 export default {
-  main: '/',
-  signIn: '/',
+  main: '/main',
+  signIn: '/sign-in',
   signUp: '/sign-up',
   userProfile: '/user/:id',
 }

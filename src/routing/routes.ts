@@ -9,10 +9,7 @@ export const routes = [
   {
     path: paths.main,
     element: MainPage,
-  }
-];
-
-export const authRoutes = [
+  },
   {
     path: paths.signUp,
     element: SignUpPage,

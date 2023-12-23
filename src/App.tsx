@@ -1,15 +1,13 @@
 import React, {Suspense, useEffect} from 'react';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {RootState} from './store/store';
-import {authRoutes, routes} from './routing/routes';
+import {routes} from './routing/routes';
+import ProtectedRoute from './routing/ProtectedRoute';
+import {Route, Routes} from 'react-router-dom';
+import {UserI} from './types/user';
 
 function App() {
-  const user = useSelector<RootState>(state => state.user.user);
-
-  const router = createBrowserRouter(
-    (!user ? authRoutes : routes).map(route => ({...route, element: <route.element/>}))
-  );
+  const currentUser = useSelector<RootState>(state => state.user.currentUser) as UserI;
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -17,7 +15,14 @@ function App() {
 
   return (
     <Suspense>
-      <RouterProvider router={router}/>
+      <Routes>
+        {routes.map(route => (
+          <Route element={<ProtectedRoute currentUser={currentUser}/>}>
+            <Route path={route.path} element={<route.element/>}/>
+          </Route>
+        ))}
+        <Route path='*' element={<p>There's nothing here: 404!</p>}/>
+      </Routes>
     </Suspense>
   );
 }

@@ -2,18 +2,18 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {UserI} from '../types/user';
 
 const userFromStorage = localStorage.getItem('user');
-let currentUser: UserI | null = null;
+let currentUser: UserI | undefined;
 
 if (userFromStorage) {
   currentUser = JSON.parse(userFromStorage)
 }
 
 interface UserState {
-  user: UserI | null;
+  currentUser?: UserI;
 }
 
 const initialState: UserState = {
-  user: currentUser,
+  currentUser,
 };
 
 const userSlice = createSlice({
@@ -21,8 +21,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateCurrentUser: (state, action: PayloadAction<UserI>) => {
-      console.log(action);
-      state.user = action.payload;
+      state.currentUser = action.payload;
     },
   },
 });

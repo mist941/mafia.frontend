@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
-import { ApolloProvider } from '@apollo/client';
+import {ApolloProvider} from '@apollo/client';
 import {Provider} from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 import store from './store/store';
 import {client} from './graphql/apolo';
 import App from './App';
+import {BrowserRouter} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,7 +16,11 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <App/>
+        <Suspense>
+          <BrowserRouter>
+            <App/>
+          </BrowserRouter>
+        </Suspense>
       </Provider>
     </ApolloProvider>
   </React.StrictMode>
