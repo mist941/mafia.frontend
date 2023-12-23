@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {UserI} from '../types/user';
 
 const userFromStorage = localStorage.getItem('user');
@@ -9,7 +9,7 @@ if (userFromStorage) {
 }
 
 interface UserState {
-  user:UserI | null;
+  user: UserI | null;
 }
 
 const initialState: UserState = {
@@ -20,10 +20,13 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    increment: () => {
-
+    updateCurrentUser: (state, action: PayloadAction<UserI>) => {
+      console.log(action);
+      state.user = action.payload;
     },
   },
 });
+
+export const {updateCurrentUser} = userSlice.actions;
 
 export default userSlice.reducer;

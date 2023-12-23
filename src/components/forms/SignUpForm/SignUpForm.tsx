@@ -26,9 +26,9 @@ const SignUpForm: FC<SignUpFormProps> = ({send}) => {
       username: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email('Invalid email address').required('Required'),
-      password: Yup.string().required('Required'),
-      username: Yup.string().required('Required'),
+      email: Yup.string().email('Invalid email address').required('Email is required'),
+      password: Yup.string().required('Password is required'),
+      username: Yup.string().required('Username is required'),
     }),
     onSubmit: (values) => {
       send(values);

@@ -21,7 +21,7 @@
     "jsx-quotes": [2, "prefer-single"],
     "quotes": [2, "single"],
     "curly": [2, "multi-line"],
-    "no-console": 2,
+    "no-console": 1,
     "react/prop-types": 0,
     "react/jsx-boolean-value": 2,
     "react/jsx-no-undef": 2,

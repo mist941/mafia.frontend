@@ -5,15 +5,21 @@ import SignUpForm from '../../forms/SignUpForm/SignUpForm';
 import {FetchResult, useMutation} from '@apollo/client';
 import {SIGN_UP} from '../../../graphql/mutations';
 import {SignResponseI, SignUpRequestI} from '../../../types/auth';
+import {updateCurrentSessionData} from '../../../utils/auth';
 
 const SignUpPage = () => {
   const [signUp] = useMutation(SIGN_UP);
 
   const handleSignUp = async (values: SignUpRequestI) => {
-    const response: FetchResult<SignResponseI> = await signUp({
+    signUp({
       variables: {signupInput: values},
+    }).then((response: FetchResult<{ signup: SignResponseI }>) => {
+      if (response.data) {
+        updateCurrentSessionData(response.data.signup);
+      }
+    }).catch((error) => {
+      alert(error.message);
     });
-    localStorage.setItem('currentUser', JSON.stringify(response.data?.user));
   }
 
   return (

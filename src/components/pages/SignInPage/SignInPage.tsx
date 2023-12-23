@@ -7,13 +7,13 @@ import {SIGN_IN} from '../../../graphql/mutations';
 import {SignInRequestI, SignResponseI} from '../../../types/auth';
 
 const SignInPage = () => {
-  const [signUp] = useMutation(SIGN_IN);
+  const [signIp] = useMutation(SIGN_IN);
 
   const handleSignIn = async (params: SignInRequestI) => {
-    const response: FetchResult<SignResponseI> = await signUp({
+    const response: FetchResult<{ signin:SignResponseI }> = await signIp({
       variables: {signupInput: params},
     });
-    localStorage.setItem('currentUser', JSON.stringify(response.data?.user));
+    localStorage.setItem('currentUser', JSON.stringify(response.data?.signin?.user));
   }
 
   return (
