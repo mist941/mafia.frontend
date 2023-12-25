@@ -23,7 +23,9 @@ const HandleNewGame = () => {
       </Button>
       {isOpenCreationRoomPopUp && (
         <ModalWindow close={handleOpenCreationRoomPopUp}>
-          Hello
+          <InputField placeholder='Start typing to find a game'/>
+          <InputField placeholder='Start typing to find a game'/>
+          <InputField placeholder='Start typing to find a game'/>
         </ModalWindow>
       )}
     </div>
