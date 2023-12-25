@@ -6,6 +6,7 @@ import UserAvatar from '../../atoms/UserAvatar/UserAvatar';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {UserI} from '../../../types/user';
+import HandleNewGame from '../HandleNewGame/HandleNewGame';
 
 const Header = () => {
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as UserI;
@@ -14,6 +15,7 @@ const Header = () => {
     <EssentialBlock padding='12px 24px'>
       <header className={styles.header}>
         <Logo size='medium'/>
+        <HandleNewGame/>
         <UserAvatar userId={currentUser.id}/>
       </header>
     </EssentialBlock>
