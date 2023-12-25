@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {ReactComponent as LogoIcon} from '../../../assets/icons/logo.svg';
 import styles from './Logo.module.scss';
+import classNames from 'classnames';
 
-const Logo = () => {
+type LogoSizes = 'large' | 'medium';
+
+type LogoProps = {
+  size?: LogoSizes;
+}
+
+const Logo: FC<LogoProps> = ({size = 'large'}) => {
   return (
-    <div className={styles.logo}>
+    <div className={classNames(styles.logo, styles[size])}>
       <LogoIcon/>
     </div>
   );

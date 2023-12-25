@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from './Error.module.scss';
 
-interface ErrorProps {
+type ErrorProps = {
   error: string;
 }
 

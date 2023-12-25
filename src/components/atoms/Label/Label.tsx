@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import Typography from '../Typography/Typography';
 
-interface LabelProps {
+type LabelProps = {
   label: string;
 }
 

@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from 'react';
 import styles from './ModalWindow.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 
-interface EssentialBlockProps {
+type EssentialBlockProps = {
   children?: ReactNode;
 }
 

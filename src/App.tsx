@@ -10,7 +10,7 @@ function App() {
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as UserI;
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.setAttribute('data-theme', 'dark');
   }, []);
 
   return (

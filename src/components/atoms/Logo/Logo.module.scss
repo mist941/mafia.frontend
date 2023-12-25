@@ -1,4 +1,21 @@
 .logo {
-  width: 100px;
-  height: auto;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+
+  &.large {
+    width: 100px;
+
+    svg {
+      width: 100px;
+    }
+  }
+
+  &.medium {
+    width: 80px;
+
+    svg {
+      width: 80px;
+    }
+  }
 }
