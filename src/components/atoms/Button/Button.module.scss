@@ -1,5 +1,6 @@
 .button {
-  padding: 12px 16px;
+  height: 40px;
+  padding: 0 16px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
@@ -10,12 +11,14 @@
   background: unset;
 
   &.s {
+    height: 32px;
     font-size: 14px;
   }
 
   &.s {
+    height: 30px;
     font-size: 12px;
-    padding: 8px 12px;
+    padding: 0 12px;
   }
 
   &.primary {

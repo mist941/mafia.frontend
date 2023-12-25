@@ -8,10 +8,13 @@
   left: 0;
   bottom: 0;
   right: 0;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  background: #2e2e2e80;
 }
 
 .modalWindowContent {
   width: 500px;
   height: fit-content;
+  border-radius: 16px;
+  box-shadow: 0 4px 5px #0000001f;
 }

@@ -14,7 +14,7 @@ const HandleNewGame = () => {
 
   return (
     <div className={styles.handleGameWrap}>
-      <InputField/>
+      <InputField placeholder='Start typing to find a game'/>
       <Typography.Paragraph size='s' color='disable'>
         Or
       </Typography.Paragraph>

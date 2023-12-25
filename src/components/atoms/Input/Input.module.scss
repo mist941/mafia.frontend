@@ -1,9 +1,10 @@
 .input {
+  height: 40px;
   border-radius: 8px;
   border: 1px solid var(--field-border);
   background: transparent;
   font-family: Karla, sans-serif;
-  padding: 12px;
+  padding: 0 12px;
   color: var(--field-color);
   width: 100%;
   transition: var(--transition);
