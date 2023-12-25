@@ -1,10 +1,9 @@
 import React, {Suspense, useEffect} from 'react';
 import {authRoutes, routes} from './routing/routes';
-import ProtectedRoute from './routing/ProtectedRoute';
 import {Route, Routes} from 'react-router-dom';
+import ProtectedRoute from './routing/ProtectedRoute';
 
 function App() {
-
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');
