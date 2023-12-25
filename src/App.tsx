@@ -17,12 +17,18 @@ function App() {
     <Suspense>
       <Routes>
         {routes.map(route => (
-          <Route key={route.path} element={currentUser ? <Outlet/> : <Navigate to={paths.signIn} replace/>}>
+          <Route
+            key={route.path}
+            element={currentUser ? <Outlet/> : <Navigate to={paths.signIn} replace/>}
+          >
             <Route path={route.path} element={<route.element/>}/>
           </Route>
         ))}
         {authRoutes.map(route => (
-          <Route key={route.path} element={!currentUser ? <Outlet/> : <Navigate to={paths.main} replace/>}>
+          <Route
+            key={route.path}
+            element={!currentUser ? <Outlet/> : <Navigate to={paths.main} replace/>}
+          >
             <Route path={route.path} element={<route.element/>}/>
           </Route>
         ))}
