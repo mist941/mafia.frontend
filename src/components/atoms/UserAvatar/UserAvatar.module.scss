@@ -1,0 +1,11 @@
+.avatar {
+  &.large {
+    height: 40px;
+    width: 40px;
+  }
+
+  &.medium {
+    width: 25px;
+    height: 25px;
+  }
+}
