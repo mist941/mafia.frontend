@@ -6,8 +6,11 @@ import {FetchResult, useMutation} from '@apollo/client';
 import {SIGN_IN} from '../../../graphql/mutations';
 import {SignInRequestI, SignResponseI} from '../../../types/auth';
 import {updateCurrentSessionData} from '../../../utils/auth';
+import {useNavigate} from 'react-router-dom';
+import paths from '../../../routing/paths';
 
 const SignInPage = () => {
+  const navigate = useNavigate();
   const [signIn] = useMutation(SIGN_IN);
 
   const handleSignIn = async (params: SignInRequestI) => {
@@ -16,6 +19,7 @@ const SignInPage = () => {
     }).then((response: FetchResult<{ signin: SignResponseI }>) => {
       if (response.data) {
         updateCurrentSessionData(response.data.signin);
+        navigate(paths.main);
       }
     }).catch((error) => {
       alert(error.message);
