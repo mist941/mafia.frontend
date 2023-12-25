@@ -13,7 +13,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const [signUp] = useMutation(SIGN_UP);
 
-  const handleSignUp = async (values: SignUpRequestI) => {
+  const handleSignUp = (values: SignUpRequestI) => {
     signUp({
       variables: {signupInput: values},
     }).then((response: FetchResult<{ signup: SignResponseI }>) => {

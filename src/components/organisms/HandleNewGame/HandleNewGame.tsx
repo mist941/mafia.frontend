@@ -3,13 +3,19 @@ import styles from './HandleNewGame.module.scss';
 import InputField from '../../molecules/InputField/InputField';
 import Button from '../../atoms/Button/Button';
 import Typography from '../../atoms/Typography/Typography';
-import ModalWindow from '../ModalWindow/ModalWindow';
+import ModalWindow from '../../molecules/ModalWindow/ModalWindow';
+import CreateRoomForm from '../../forms/CreateRoomForm/CreateRoomForm';
+import {CreateGameRoomRequestI} from '../../../types/gameroom';
 
 const HandleNewGame = () => {
   const [isOpenCreationRoomPopUp, setOpenCreationRoomPopUp] = useState<boolean>(false);
 
-  const handleOpenCreationRoomPopUp = ()=>{
+  const handleOpenCreationRoomPopUp = () => {
     setOpenCreationRoomPopUp(prevState => !prevState);
+  }
+
+  const createGameRoom = (values: CreateGameRoomRequestI) => {
+    console.log(values);
   }
 
   return (
@@ -23,9 +29,10 @@ const HandleNewGame = () => {
       </Button>
       {isOpenCreationRoomPopUp && (
         <ModalWindow close={handleOpenCreationRoomPopUp}>
-          <InputField placeholder='Start typing to find a game'/>
-          <InputField placeholder='Start typing to find a game'/>
-          <InputField placeholder='Start typing to find a game'/>
+          <CreateRoomForm
+            cancel={handleOpenCreationRoomPopUp}
+            send={createGameRoom}
+          />
         </ModalWindow>
       )}
     </div>

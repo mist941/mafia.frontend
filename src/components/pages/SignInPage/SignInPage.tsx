@@ -13,7 +13,7 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const [signIn] = useMutation(SIGN_IN);
 
-  const handleSignIn = async (params: SignInRequestI) => {
+  const handleSignIn = (params: SignInRequestI) => {
     signIn({
       variables: {signinInput: params},
     }).then((response: FetchResult<{ signin: SignResponseI }>) => {

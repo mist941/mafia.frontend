@@ -11,12 +11,9 @@ import {SignInRequestI} from '../../../types/auth';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {handleFormikErrors} from '../../../utils/common';
+import {FormDefaultProps} from '../../../types/common';
 
-type SignInFormProps = {
-  send: (params: SignInRequestI) => void;
-}
-
-const SignInForm: FC<SignInFormProps> = ({send}) => {
+const SignInForm: FC<FormDefaultProps<SignInRequestI>> = ({send}) => {
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -48,7 +45,7 @@ const SignInForm: FC<SignInFormProps> = ({send}) => {
           <Typography.Heading3>
             Sign In
           </Typography.Heading3>
-          <div className={styles.fieldsWrap}>
+          <div className='fieldsWrap'>
             <InputField
               label='Email'
               type='email'

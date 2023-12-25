@@ -11,12 +11,9 @@ import {SignUpRequestI} from '../../../types/auth';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {handleFormikErrors} from '../../../utils/common';
+import {FormDefaultProps} from '../../../types/common';
 
-type SignUpFormProps = {
-  send: (values: SignUpRequestI) => void;
-}
-
-const SignUpForm: FC<SignUpFormProps> = ({send}) => {
+const SignUpForm: FC<FormDefaultProps<SignUpRequestI>> = ({send}) => {
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -46,11 +43,11 @@ const SignUpForm: FC<SignUpFormProps> = ({send}) => {
     <>
       <div className={styles.logoWrap}><Logo/></div>
       <EssentialBlock padding='25px'>
-        <form className={styles.signUpForm} onSubmit={handleSubmit}>
+        <form className='formContainer' onSubmit={handleSubmit}>
           <Typography.Heading3 weight='medium'>
             Sign Up
           </Typography.Heading3>
-          <div className={styles.fieldsWrap}>
+          <div className='fieldsWrap'>
             <InputField
               label='Username'
               type='text'

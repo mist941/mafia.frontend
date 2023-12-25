@@ -50,6 +50,7 @@
   }
 
   &.secondary-transparent {
+    height: unset;
     color: var(--button-secondary-color);
     padding: 0;
 
