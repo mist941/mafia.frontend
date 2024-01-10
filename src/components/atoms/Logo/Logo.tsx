@@ -9,6 +9,14 @@ type LogoProps = {
   size?: LogoSizes;
 }
 
+/**
+ * Represents a logo component.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.size - The size of the logo. Defaults to 'large'.
+ * @returns {JSX.Element} - The logo component.
+ */
 const Logo: FC<LogoProps> = ({size = 'large'}) => {
   return (
     <div className={classNames(styles.logo, styles[size])}>

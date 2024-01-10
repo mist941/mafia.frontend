@@ -140,6 +140,16 @@ const Paragraph: FC<ParagraphProps> = (
   </p>
 );
 
+/**
+ * Represents a collection of typography styles.
+ * @typedef {Object} Typography
+ * @property {string} Heading1 - The style for heading level 1.
+ * @property {string} Heading2 - The style for heading level 2.
+ * @property {string} Heading3 - The style for heading level 3.
+ * @property {string} Heading4 - The style for heading level 4.
+ * @property {string} Heading5 - The style for heading level 5.
+ * @property {string} Paragraph - The style for a paragraph.
+ */
 const Typography = {
   Heading1,
   Heading2,
