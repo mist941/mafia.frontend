@@ -16,6 +16,7 @@ const HandleNewGame = () => {
 
   const createGameRoom = (values: CreateGameRoomRequestI) => {
     console.log(values);
+    handleOpenCreationRoomPopUp();
   }
 
   return (
