@@ -22,7 +22,8 @@ const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
       gameName: Yup.string().required('Game name is required'),
       numberOfPlayers: Yup.number()
         .required('Number of players is required')
-        .min(6, 'Minimum 6 players'),
+        .min(5, 'Minimum 5 players')
+        .max(19, 'Maximum 19 players'),
     }),
     onSubmit: (values) => {
       send(values);
