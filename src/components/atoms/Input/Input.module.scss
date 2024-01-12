@@ -1,20 +1,20 @@
 .input {
   height: 40px;
   border-radius: 8px;
-  border: 1px solid var(--field-border);
+  border: 1px solid var(--border-bright);
   background: transparent;
   font-family: Karla, sans-serif;
   padding: 0 12px;
-  color: var(--field-color);
+  color: var(--text-light);
   width: 100%;
   transition: var(--transition);
 
   &:hover {
-    border: 1px solid var(--field-hover);
+    border: 1px solid var(--border-additionaly);
   }
 
   &:focus-within {
-    border: 1px solid var(--field-focus);
+    border: 1px solid var(--border-tertiary-pressed);
     outline: unset;
   }
 }
