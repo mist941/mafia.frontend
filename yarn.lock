@@ -9111,6 +9111,11 @@ sanitize.css@*:
   resolved "https://registry.yarnpkg.com/sanitize.css/-/sanitize.css-13.0.0.tgz#2675553974b27964c75562ade3bd85d79879f173"
   integrity sha512-ZRwKbh/eQ6w9vmTjkuG0Ioi3HBwPFce0O+v//ve+aOq1oeCy7jMV2qzzAlpsNuqpqCBjjriM1lbtZbF/Q8jVyA==
 
+sass-color-palette@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/sass-color-palette/-/sass-color-palette-1.0.3.tgz#01f6e42715dcf92d47e279bf291f52d3f4c9bd6f"
+  integrity sha512-RYrPT2L6g/TFbJNTnhV6Indb9p1shSUxTRs/rAoSK2EvJCMXI1xzoIr5v0L1DLBmFUjVgukOCD8EwOCFzm3hyw==
+
 sass-graph@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/sass-graph/-/sass-graph-4.0.1.tgz#2ff8ca477224d694055bf4093f414cf6cfad1d2e"
