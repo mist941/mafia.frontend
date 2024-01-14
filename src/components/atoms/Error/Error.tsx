@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import styles from './Error.module.scss';
+import Typography from '../Typography/Typography';
 
 type ErrorProps = {
   error: string;
@@ -14,7 +14,7 @@ type ErrorProps = {
  * @returns {ReactElement} The rendered error message component.
  */
 const Error: FC<ErrorProps> = ({error}) => {
-  return <p className={styles.error}>{error}</p>;
+  return <Typography.Paragraph size='s' color='error'>{error}</Typography.Paragraph>;
 };
 
 export default Error;
