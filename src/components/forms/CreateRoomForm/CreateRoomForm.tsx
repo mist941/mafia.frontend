@@ -4,6 +4,7 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Typography from '../../atoms/Typography/Typography';
 import InputField from '../../molecules/InputField/InputField';
+import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
 import {CreateGameRoomRequestI} from '../../../types/gameroom';
@@ -17,6 +18,7 @@ const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
     initialValues: {
       gameName: '',
       numberOfPlayers: 6,
+      isPrivate: false
     },
     validationSchema: Yup.object({
       gameName: Yup.string().required('Game name is required'),
@@ -60,6 +62,13 @@ const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
           value={values.numberOfPlayers}
           onChange={handleChange}
           error={handleFormikErrors(touched, errors, 'numberOfPlayers')}
+        />
+        <CheckboxField
+          label='Private'
+          id='isPrivate'
+          name='isPrivate'
+          checked={values.isPrivate}
+          onChange={handleChange}
         />
       </div>
       <div className='formButtonsContainer'>

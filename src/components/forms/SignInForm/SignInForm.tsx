@@ -41,7 +41,7 @@ const SignInForm: FC<FormDefaultProps<SignInRequestI>> = ({send}) => {
     <>
       <div className={styles.logoWrap}><Logo/></div>
       <EssentialBlock padding='25px'>
-        <form className={styles.signInForm} onSubmit={handleSubmit}>
+        <form className='formContainer' onSubmit={handleSubmit}>
           <Typography.Heading3>
             Sign In
           </Typography.Heading3>
