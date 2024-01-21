@@ -13,19 +13,22 @@ type CreateRoomFormProps = {
   cancel: () => void;
 } & FormDefaultProps<CreateGameRoomRequestI>;
 
+const MIN_NUMBER_OF_PLAYERS = 5;
+const MAX_NUMBER_OF_PLAYERS = 19;
+
 const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
   const formik = useFormik({
     initialValues: {
       gameName: '',
-      numberOfPlayers: 6,
+      numberOfPlayers: MIN_NUMBER_OF_PLAYERS,
       isPrivate: false
     },
     validationSchema: Yup.object({
       gameName: Yup.string().required('Game name is required'),
       numberOfPlayers: Yup.number()
         .required('Number of players is required')
-        .min(5, 'Minimum 5 players')
-        .max(19, 'Maximum 19 players'),
+        .min(MIN_NUMBER_OF_PLAYERS, 'Minimum 5 players')
+        .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
     onSubmit: (values) => {
       send(values);
