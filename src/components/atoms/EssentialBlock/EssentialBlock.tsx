@@ -15,7 +15,7 @@ const DEFAULT_PADDING = '16px';
  *
  * @param {Object} props - The component props.
  * @param {ReactNode} props.children - The children to be rendered inside the essential block.
- * @param {number} [props.padding=0] - The padding value for the essential block.
+ * @param {number} [props.padding=16px] - The padding value for the essential block.
  * @param {string} [props.className] - The additional class name for the essential block.
  * @returns {ReactElement} The rendered essential block.
  */
