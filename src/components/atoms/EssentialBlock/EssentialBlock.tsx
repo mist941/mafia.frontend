@@ -8,6 +8,8 @@ type EssentialBlockProps = {
   className?: string;
 }
 
+const DEFAULT_PADDING = '16px';
+
 /**
  * A functional component that represents an essential block.
  *
@@ -20,7 +22,7 @@ type EssentialBlockProps = {
 const EssentialBlock: FC<EssentialBlockProps> = (
   {
     children,
-    padding = 0,
+    padding = DEFAULT_PADDING,
     className
   }
 ) => {

@@ -1,23 +1,19 @@
 import React, {FC, ReactNode} from 'react';
 import styles from './ModalWindow.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
-import useOutsideClicker from '../../../hooks/useOutsideClicker';
 
 type EssentialBlockProps = {
   children?: ReactNode;
   close: () => void;
 }
 
-const ModalWindow: FC<EssentialBlockProps> = ({children, close}) => {
-  const modalRef = useOutsideClicker({
-    onOutsideClick: () => close(),
-  });
+const ModalWindow: FC<EssentialBlockProps> = ({children}) => {
 
   return (
     <>
       <div className={styles.modalWindow}>
-        <div className={styles.modalWindowContent} ref={modalRef}>
-          <EssentialBlock padding='16px'>
+        <div className={styles.modalWindowContent}>
+          <EssentialBlock>
             {children}
           </EssentialBlock>
         </div>
