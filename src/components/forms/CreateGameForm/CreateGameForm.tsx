@@ -7,21 +7,21 @@ import InputField from '../../molecules/InputField/InputField';
 import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
-import {CreateGameRoomRequestI} from '../../../types/gameroom';
+import {CreateGameRequestI} from '../../../types/game';
 
 type CreateRoomFormProps = {
   cancel: () => void;
-} & FormDefaultProps<CreateGameRoomRequestI>;
+} & FormDefaultProps<CreateGameRequestI>;
 
 const MIN_NUMBER_OF_PLAYERS = 5;
 const MAX_NUMBER_OF_PLAYERS = 19;
 
-const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
+const CreateGameForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
   const formik = useFormik({
     initialValues: {
       gameName: '',
       numberOfPlayers: MIN_NUMBER_OF_PLAYERS,
-      isPrivate: false
+      private: false
     },
     validationSchema: Yup.object({
       gameName: Yup.string().required('Game name is required'),
@@ -68,9 +68,9 @@ const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
         />
         <CheckboxField
           label='Private'
-          id='isPrivate'
-          name='isPrivate'
-          checked={values.isPrivate}
+          id='private'
+          name='private'
+          checked={values.private}
           onChange={handleChange}
         />
       </div>
@@ -86,4 +86,4 @@ const CreateRoomForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
   );
 };
 
-export default CreateRoomForm;
+export default CreateGameForm;

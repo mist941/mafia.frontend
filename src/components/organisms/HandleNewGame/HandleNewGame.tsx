@@ -4,19 +4,19 @@ import InputField from '../../molecules/InputField/InputField';
 import Button from '../../atoms/Button/Button';
 import Typography from '../../atoms/Typography/Typography';
 import ModalWindow from '../../molecules/ModalWindow/ModalWindow';
-import CreateRoomForm from '../../forms/CreateRoomForm/CreateRoomForm';
-import {CreateGameRoomRequestI} from '../../../types/gameroom';
+import CreateGameForm from '../../forms/CreateGameForm/CreateGameForm';
+import {CreateGameRequestI} from '../../../types/game';
 
 const HandleNewGame = () => {
-  const [isOpenCreationRoomPopUp, setOpenCreationRoomPopUp] = useState<boolean>(false);
+  const [isOpenCreationGamePopUp, setOpenCreationGamePopUp] = useState<boolean>(false);
 
-  const handleOpenCreationRoomPopUp = () => {
-    setOpenCreationRoomPopUp(prevState => !prevState);
+  const toggleCreationRoomPopup = () => {
+    setOpenCreationGamePopUp(prevState => !prevState);
   }
 
-  const createGameRoom = (values: CreateGameRoomRequestI) => {
+  const createGameRoom = (values: CreateGameRequestI) => {
     console.log(values);
-    handleOpenCreationRoomPopUp();
+    toggleCreationRoomPopup();
   }
 
   return (
@@ -25,13 +25,13 @@ const HandleNewGame = () => {
       <Typography.Paragraph size='s' color='disable'>
         Or
       </Typography.Paragraph>
-      <Button onClick={handleOpenCreationRoomPopUp}>
+      <Button onClick={toggleCreationRoomPopup}>
         Create
       </Button>
-      {isOpenCreationRoomPopUp && (
-        <ModalWindow close={handleOpenCreationRoomPopUp}>
-          <CreateRoomForm
-            cancel={handleOpenCreationRoomPopUp}
+      {isOpenCreationGamePopUp && (
+        <ModalWindow close={toggleCreationRoomPopup}>
+          <CreateGameForm
+            cancel={toggleCreationRoomPopup}
             send={createGameRoom}
           />
         </ModalWindow>
