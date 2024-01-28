@@ -12,7 +12,7 @@ import {useNavigate} from 'react-router-dom';
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [signUp] = useMutation(SIGN_UP);
-
+  //move to form
   const handleSignUp = (values: SignUpRequestI) => {
     signUp({
       variables: {signupInput: values},
