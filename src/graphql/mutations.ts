@@ -27,3 +27,11 @@ export const SIGN_IN = gql`
     }
   }
 `;
+
+export const CREATE_GAME = gql`
+  mutation CreateGame($createGameInput: CreateGameRequestDTO!) {
+    createGame(createGameInput: $createGameInput) {
+      id
+    }
+  }
+`;
