@@ -30,8 +30,22 @@
 
   &.checked {
     .check {
-      border: 1.5px solid var(--border-primary-pressed);
-      background-color: var(--bg-primary-pressed);
+      border: 1.5px solid var(--border-primary-default);
+      background-color: var(--bg-primary-default);
+    }
+
+    &:hover {
+      .check {
+        border: 1.5px solid var(--border-primary-hover);
+        background-color: var(--bg-primary-hover);
+      }
+    }
+
+    &:active {
+      .check {
+        border: 1.5px solid var(--border-primary-pressed);
+        background-color: var(--bg-primary-pressed);
+      }
     }
   }
 
