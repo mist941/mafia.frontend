@@ -29,12 +29,12 @@ const SignInForm: FC = () => {
       password: Yup.string().required('Password is required'),
     }),
     onSubmit: async (values: SignInRequestI): Promise<void> => {
-      const signInResponse: FetchResult<SignResponseI> = await signIn({
+      const signInResponse: FetchResult<{ signin: SignResponseI }> = await signIn({
         variables: {signinInput: values},
       });
 
-      if (signInResponse.data) {
-        updateCurrentSessionData(signInResponse.data);
+      if (signInResponse.data?.signin) {
+        updateCurrentSessionData(signInResponse.data.signin);
         navigate(paths.main);
       }
     },

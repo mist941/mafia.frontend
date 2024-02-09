@@ -34,11 +34,11 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({cancel}) => {
         .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
     onSubmit: async (values: CreateGameRequestI) => {
-      const createGameResponse: FetchResult<CreateGameRequestI> = await createGame({
+      const createGameResponse: FetchResult<{ createGame: CreateGameRequestI }> = await createGame({
         variables: {createGameInput: values},
       });
 
-      if (createGameResponse.data) { /* empty */
+      if (createGameResponse.data?.createGame) { /* empty */
       }
     },
   });

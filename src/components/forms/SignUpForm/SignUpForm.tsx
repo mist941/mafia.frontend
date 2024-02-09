@@ -31,12 +31,12 @@ const SignUpForm: FC = () => {
       username: Yup.string().required('Username is required'),
     }),
     onSubmit: async (values: SignUpRequestI): Promise<void> => {
-      const signUpResponse: FetchResult<SignResponseI> = await signUp({
+      const signUpResponse: FetchResult<{ signup: SignResponseI }> = await signUp({
         variables: {signupInput: values},
       });
 
-      if (signUpResponse.data) {
-        updateCurrentSessionData(signUpResponse.data);
+      if (signUpResponse.data?.signup) {
+        updateCurrentSessionData(signUpResponse.data.signup);
         navigate(paths.main);
       }
     },
