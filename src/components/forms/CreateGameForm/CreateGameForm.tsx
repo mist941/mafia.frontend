@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {FormDefaultProps} from '../../../types/common';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Typography from '../../atoms/Typography/Typography';
@@ -7,16 +6,20 @@ import InputField from '../../molecules/InputField/InputField';
 import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
+import {FetchResult, useMutation} from '@apollo/client';
+import {CREATE_GAME} from '../../../graphql/mutations';
 import {CreateGameRequestI} from '../../../types/game';
 
 type CreateRoomFormProps = {
   cancel: () => void;
-} & FormDefaultProps<CreateGameRequestI>;
+}
 
 const MIN_NUMBER_OF_PLAYERS = 5;
 const MAX_NUMBER_OF_PLAYERS = 19;
 
-const CreateGameForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
+const CreateGameForm: FC<CreateRoomFormProps> = ({cancel}) => {
+  const [createGame] = useMutation(CREATE_GAME);
+
   const formik = useFormik({
     initialValues: {
       gameName: '',
@@ -30,8 +33,13 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({send, cancel}) => {
         .min(MIN_NUMBER_OF_PLAYERS, 'Minimum 5 players')
         .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
-    onSubmit: (values) => {
-      send(values);
+    onSubmit: async (values: CreateGameRequestI) => {
+      const createGameResponse: FetchResult<CreateGameRequestI> = await createGame({
+        variables: {createGameInput: values},
+      });
+
+      if (createGameResponse.data) { /* empty */
+      }
     },
   });
 
