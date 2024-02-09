@@ -7,13 +7,16 @@ import {useNavigate} from 'react-router-dom';
 import paths from '../../../routing/paths';
 import Logo from '../../atoms/Logo/Logo';
 import InputField from '../../molecules/InputField/InputField';
-import {SignUpRequestI} from '../../../types/auth';
+import {SignResponseI} from '../../../types/auth';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {handleFormikErrors} from '../../../utils/common';
-import {FormDefaultProps} from '../../../types/common';
+import {FetchResult, useMutation} from '@apollo/client';
+import {SIGN_UP} from '../../../graphql/mutations';
+import {updateCurrentSessionData} from '../../../utils/auth';
 
-const SignUpForm: FC<FormDefaultProps<SignUpRequestI>> = ({send}) => {
+const SignUpForm: FC = () => {
+  const [signUp] = useMutation(SIGN_UP);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -27,8 +30,15 @@ const SignUpForm: FC<FormDefaultProps<SignUpRequestI>> = ({send}) => {
       password: Yup.string().required('Password is required'),
       username: Yup.string().required('Username is required'),
     }),
-    onSubmit: (values) => {
-      send(values);
+    onSubmit: async (values): Promise<void> => {
+      const signUpResponse: FetchResult<SignResponseI> = await signUp({
+        variables: {signupInput: values},
+      });
+
+      if (signUpResponse.data) {
+        updateCurrentSessionData(signUpResponse.data);
+        navigate(paths.main);
+      }
     },
   });
 
