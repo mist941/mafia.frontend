@@ -1,9 +1,16 @@
 import React from 'react';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
-import Typography from '../../atoms/Typography/Typography';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {CurrentPlayer} from '../../../types/player';
+import Badge from '../../atoms/Badge/Badge';
+import {
+  playerFullRoleNameTable,
+  playerFullStatusNameTable,
+  playerRoleColorsTable,
+  playerStatusColorsTable
+} from '../../../utils/player';
+import styles from './PlayerStatePanel.module.scss';
 
 const PlayerStatePanel = () => {
   const currentPlayer = useSelector<RootState>
@@ -11,7 +18,17 @@ const PlayerStatePanel = () => {
 
   return (
     <EssentialBlock>
-      <Typography.Paragraph size='m'>{currentPlayer.role}</Typography.Paragraph>
+      <div className={styles.playerStatuses}>
+        <Badge
+          text={playerFullRoleNameTable[currentPlayer.role]}
+          color={playerRoleColorsTable[currentPlayer.role]}
+        />
+        <Badge
+          text={playerFullStatusNameTable[currentPlayer.status]}
+          color={playerStatusColorsTable[currentPlayer.status]}
+          type='full-colored'
+        />
+      </div>
     </EssentialBlock>
   );
 };

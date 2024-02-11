@@ -1,0 +1,60 @@
+.badge {
+  width: fit-content;
+  border-radius: 16px;
+
+  &.l {
+    padding: 8px 12px;
+  }
+
+  &.m {
+    padding: 4px 8px;
+  }
+
+  &.s {
+    padding: 2px 8px;
+  }
+
+  &.default {
+    &.red {
+      background-color: var(--bg-sb-red);
+    }
+
+    &.blue {
+      background-color: var(--bg-sb-blue);
+    }
+
+    &.teal {
+      background-color: var(--bg-sb-teal);
+    }
+  }
+
+  &.full-colored {
+    &.red {
+      background-color: var(--bg-st-red);
+    }
+
+    &.green {
+      background-color: var(--bg-st-green);
+    }
+  }
+}
+
+.badgeText {
+  &.default {
+    &.red {
+      color: var(--bg-st-red);
+    }
+
+    &.blue {
+      color: var(--bg-st-blue);
+    }
+
+    &.teal {
+      color: var(--bg-st-teal);
+    }
+  }
+
+  &.full-colored {
+    color: var(--text-on-color);
+  }
+}
