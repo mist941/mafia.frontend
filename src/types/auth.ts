@@ -1,8 +1,8 @@
-import {UserI} from './user';
+import {User} from './user';
 
 type Token = string;
 
-export interface SignUpRequestI {
+export interface SignUpRequest {
   username: string;
   email: string;
   password: string;
@@ -16,5 +16,5 @@ export interface SignInRequestI {
 export interface SignResponseI {
   accessToken: Token;
   refreshToken: Token;
-  user: UserI;
+  user: User;
 }

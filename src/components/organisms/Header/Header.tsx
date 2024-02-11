@@ -5,11 +5,11 @@ import styles from './Header.module.scss';
 import UserAvatar from '../../atoms/UserAvatar/UserAvatar';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
-import {UserI} from '../../../types/user';
+import {User} from '../../../types/user';
 import HandleNewGame from '../HandleNewGame/HandleNewGame';
 
 const Header = () => {
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as UserI;
+  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
 
   return (
     <EssentialBlock padding='12px 24px'>

@@ -8,7 +8,7 @@ import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {CREATE_GAME} from '../../../graphql/mutations';
-import {CreateGameRequestI, CreateGameResponseI} from '../../../types/game';
+import {CreateGameRequest, CreateGameResponse} from '../../../types/game';
 import {useDispatch} from 'react-redux';
 import {updateCurrentGame} from '../../../store/game';
 
@@ -36,8 +36,8 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({close}) => {
         .min(MIN_NUMBER_OF_PLAYERS, 'Minimum 5 players')
         .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
-    onSubmit: async (values: CreateGameRequestI) => {
-      const createGameResponse: FetchResult<{ createGame: CreateGameResponseI }> = await createGame({
+    onSubmit: async (values: CreateGameRequest) => {
+      const createGameResponse: FetchResult<{ createGame: CreateGameResponse }> = await createGame({
         variables: {createGameInput: values},
       });
 

@@ -3,7 +3,7 @@ import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import styles from './MainPage.module.scss';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
-import {CurrentGameI} from '../../../types/game';
+import {CurrentGame} from '../../../types/game';
 import EmptyGameState from '../../emptyStates/EmptyGameState/EmptyGameState';
 import PlayerStatePanel from '../../organisms/PlayerStatePanel/PlayerStatePanel';
 import GameStatePanel from '../../organisms/GameStatePanel/GameStatePanel';
@@ -11,7 +11,7 @@ import GamePlayersPanel from '../../organisms/GamePlayersPanel/GamePlayersPanel'
 import GameChatPanel from '../../organisms/GameChatPanel/GameChatPanel';
 
 const MainPage = () => {
-  const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGameI;
+  const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
 
   return (
     <MainTemplate>

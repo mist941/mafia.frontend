@@ -1,15 +1,15 @@
-import {CurrentGameI} from '../types/game';
+import {CurrentGame} from '../types/game';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const gameFromStorage = localStorage.getItem('currentGame');
-let currentGame: CurrentGameI | undefined;
+let currentGame: CurrentGame | undefined;
 
 if (gameFromStorage) {
   currentGame = JSON.parse(gameFromStorage)
 }
 
 interface GameState {
-  currentGame?: CurrentGameI;
+  currentGame?: CurrentGame;
 }
 
 const initialState: GameState = {
@@ -20,7 +20,7 @@ const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    updateCurrentGame: (state, action: PayloadAction<CurrentGameI>) => {
+    updateCurrentGame: (state, action: PayloadAction<CurrentGame>) => {
       state.currentGame = action.payload;
     },
   },

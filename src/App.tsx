@@ -3,11 +3,11 @@ import {authRoutes, routes} from './routing/routes';
 import {Navigate, Outlet, Route, Routes} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {RootState} from './store/store';
-import {UserI} from './types/user';
+import {User} from './types/user';
 import paths from './routing/paths';
 
 function App() {
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as UserI;
+  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');

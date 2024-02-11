@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom';
 import paths from '../../../routing/paths';
 import Logo from '../../atoms/Logo/Logo';
 import InputField from '../../molecules/InputField/InputField';
-import {SignResponseI, SignUpRequestI} from '../../../types/auth';
+import {SignResponseI, SignUpRequest} from '../../../types/auth';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {handleFormikErrors} from '../../../utils/common';
@@ -30,7 +30,7 @@ const SignUpForm: FC = () => {
       password: Yup.string().required('Password is required'),
       username: Yup.string().required('Username is required'),
     }),
-    onSubmit: async (values: SignUpRequestI): Promise<void> => {
+    onSubmit: async (values: SignUpRequest): Promise<void> => {
       const signUpResponse: FetchResult<{ signup: SignResponseI }> = await signUp({
         variables: {signupInput: values},
       });
