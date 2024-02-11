@@ -1,12 +1,14 @@
 import React from 'react';
 import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import styles from './MainPage.module.scss';
-import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
-import Typography from '../../atoms/Typography/Typography';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {CurrentGameI} from '../../../types/game';
 import EmptyGameState from '../../emptyStates/EmptyGameState/EmptyGameState';
+import PlayerStatePanel from '../../organisms/PlayerStatePanel/PlayerStatePanel';
+import GameStatePanel from '../../organisms/GameStatePanel/GameStatePanel';
+import GamePlayersPanel from '../../organisms/GamePlayersPanel/GamePlayersPanel';
+import GameChatPanel from '../../organisms/GameChatPanel/GameChatPanel';
 
 const MainPage = () => {
   const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGameI;
@@ -15,25 +17,17 @@ const MainPage = () => {
     <MainTemplate>
       {currentGame ? (
         <div className={styles.container}>
-          <div className={styles.players}>
-            <EssentialBlock>
-              <Typography.Paragraph size='m'>Players</Typography.Paragraph>
-            </EssentialBlock>
-          </div>
-          <div className={styles.chat}>
-            <EssentialBlock>
-              <Typography.Paragraph size='m'>Chat</Typography.Paragraph>
-            </EssentialBlock>
-          </div>
           <div className={styles.role}>
-            <EssentialBlock>
-              <Typography.Paragraph size='m'>Role</Typography.Paragraph>
-            </EssentialBlock>
+            <PlayerStatePanel/>
           </div>
           <div className={styles.period}>
-            <EssentialBlock>
-              <Typography.Paragraph size='m'>Period</Typography.Paragraph>
-            </EssentialBlock>
+            <GameStatePanel/>
+          </div>
+          <div className={styles.players}>
+            <GamePlayersPanel/>
+          </div>
+          <div className={styles.chat}>
+            <GameChatPanel/>
           </div>
         </div>
       ) : (
