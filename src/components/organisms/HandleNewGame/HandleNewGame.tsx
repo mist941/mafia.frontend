@@ -24,7 +24,7 @@ const HandleNewGame = () => {
       </Button>
       {isOpenCreationGamePopUp && (
         <ModalWindow close={toggleCreationRoomPopup}>
-          <CreateGameForm cancel={toggleCreationRoomPopup}/>
+          <CreateGameForm close={toggleCreationRoomPopup}/>
         </ModalWindow>
       )}
     </div>

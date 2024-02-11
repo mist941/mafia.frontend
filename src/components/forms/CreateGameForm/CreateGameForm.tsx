@@ -8,16 +8,19 @@ import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {CREATE_GAME} from '../../../graphql/mutations';
-import {CreateGameRequestI} from '../../../types/game';
+import {CreateGameRequestI, CreateGameResponseI} from '../../../types/game';
+import {useDispatch} from 'react-redux';
+import {updateCurrentGame} from '../../../store/game';
 
 type CreateRoomFormProps = {
-  cancel: () => void;
+  close: () => void;
 }
 
 const MIN_NUMBER_OF_PLAYERS = 5;
 const MAX_NUMBER_OF_PLAYERS = 19;
 
-const CreateGameForm: FC<CreateRoomFormProps> = ({cancel}) => {
+const CreateGameForm: FC<CreateRoomFormProps> = ({close}) => {
+  const dispatch = useDispatch();
   const [createGame] = useMutation(CREATE_GAME);
 
   const formik = useFormik({
@@ -34,20 +37,18 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({cancel}) => {
         .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
     onSubmit: async (values: CreateGameRequestI) => {
-      const createGameResponse: FetchResult<{ createGame: CreateGameRequestI }> = await createGame({
+      const createGameResponse: FetchResult<{ createGame: CreateGameResponseI }> = await createGame({
         variables: {createGameInput: values},
       });
 
-      if (createGameResponse.data?.createGame) { /* empty */
+      if (createGameResponse.data?.createGame) {
+        dispatch(updateCurrentGame(createGameResponse.data?.createGame));
+        close();
       }
     },
   });
 
   const {handleSubmit, values, handleChange, errors, touched} = formik;
-
-  const closeForm = () => {
-    cancel();
-  }
 
   return (
     <form className='formContainer' onSubmit={handleSubmit}>
@@ -83,7 +84,7 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({cancel}) => {
         />
       </div>
       <div className='formButtonsContainer'>
-        <Button onClick={closeForm} styled='secondary'>
+        <Button onClick={close} styled='secondary'>
           Cancel
         </Button>
         <Button type='submit'>
