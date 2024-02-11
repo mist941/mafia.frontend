@@ -1,6 +1,13 @@
 import {Id} from './common';
 import {PlayerI} from './player';
 
+export enum GamePeriods {
+  START = 'start',
+  DAY = 'day',
+  NIGHT = 'night',
+  END = 'end'
+}
+
 export interface GameI {
   id: Id;
   name: string;
