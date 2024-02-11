@@ -27,6 +27,22 @@
     &.teal {
       background-color: var(--bg-sb-teal);
     }
+
+    &.gray {
+      background-color: var(--bg-sb-gray);
+    }
+
+    &.yellow {
+      background-color: var(--bg-sb-yellow);
+    }
+
+    &.purple {
+      background-color: var(--bg-sb-purple);
+    }
+
+    &.brown {
+      background-color: var(--bg-sb-brown);
+    }
   }
 
   &.full-colored {
@@ -52,6 +68,22 @@
 
     &.teal {
       color: var(--bg-st-teal);
+    }
+
+    &.gray {
+      color: var(--text-light);
+    }
+
+    &.yellow {
+      color: var(--bg-st-yellow);
+    }
+
+    &.purple {
+      color: var(--bg-st-purple);
+    }
+
+    &.brown {
+      color: var(--bg-st-brown);
     }
   }
 

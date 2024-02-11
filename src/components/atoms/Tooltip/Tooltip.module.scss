@@ -1,0 +1,40 @@
+.tooltipWrap {
+  width: fit-content;
+  position: relative;
+
+  .tooltip {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-base);
+    box-shadow: 0 2px 16px 2px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+    position: absolute;
+    top: calc(-100% - 17px);
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 400ms, visibility 400ms;
+
+    .tooltipPointer {
+      position: absolute;
+      transform: translateX(-50%);
+      left: 50%;
+      bottom: -8px;
+
+      path {
+        fill: var(--bg-base);
+        stroke: var(--border-light);
+      }
+    }
+  }
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

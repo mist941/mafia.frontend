@@ -17,16 +17,16 @@ const MainPage = () => {
     <MainTemplate>
       {currentGame ? (
         <div className={styles.container}>
-          <div className={styles.role}>
+          <div className={styles.playerStatePanel}>
             <PlayerStatePanel/>
           </div>
-          <div className={styles.period}>
+          <div className={styles.gameStatePanel}>
             <GameStatePanel/>
           </div>
-          <div className={styles.players}>
+          <div className={styles.playersPanel}>
             <GamePlayersPanel/>
           </div>
-          <div className={styles.chat}>
+          <div className={styles.chatPanel}>
             <GameChatPanel/>
           </div>
         </div>

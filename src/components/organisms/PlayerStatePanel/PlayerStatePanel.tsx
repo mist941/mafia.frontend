@@ -11,6 +11,7 @@ import {
   playerStatusColorsTable
 } from '../../../utils/player';
 import styles from './PlayerStatePanel.module.scss';
+import Tooltip from '../../atoms/Tooltip/Tooltip';
 
 const PlayerStatePanel = () => {
   const currentPlayer = useSelector<RootState>
@@ -19,15 +20,19 @@ const PlayerStatePanel = () => {
   return (
     <EssentialBlock>
       <div className={styles.playerStatuses}>
-        <Badge
-          text={playerFullRoleNameTable[currentPlayer.role]}
-          color={playerRoleColorsTable[currentPlayer.role]}
-        />
-        <Badge
-          text={playerFullStatusNameTable[currentPlayer.status]}
-          color={playerStatusColorsTable[currentPlayer.status]}
-          type='full-colored'
-        />
+        <Tooltip text='Your role'>
+          <Badge
+            text={playerFullRoleNameTable[currentPlayer.role]}
+            color={playerRoleColorsTable[currentPlayer.role]}
+          />
+        </Tooltip>
+        <Tooltip text='Your curent status'>
+          <Badge
+            text={playerFullStatusNameTable[currentPlayer.status]}
+            color={playerStatusColorsTable[currentPlayer.status]}
+            type='full-colored'
+          />
+        </Tooltip>
       </div>
     </EssentialBlock>
   );
