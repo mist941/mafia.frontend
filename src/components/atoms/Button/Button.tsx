@@ -29,7 +29,8 @@ const Button: FC<ButtonProps> = ({styled = 'primary', size = 'm', ...rest}) => {
       className={classNames(
         styles.button,
         styles[styled],
-        styles[size]
+        styles[size],
+        {[styles.disabled]: rest.disabled}
       )}
     />
   );

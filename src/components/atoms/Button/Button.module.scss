@@ -32,6 +32,11 @@
     &:active {
       background-color: var(--bg-primary-pressed);
     }
+
+    &.disabled {
+      background-color: var(--bg-primary-disable);
+      color: var(--text-btn-primary-disable);
+    }
   }
 
   &.secondary {
