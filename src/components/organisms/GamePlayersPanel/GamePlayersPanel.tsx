@@ -4,35 +4,43 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
+import {playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
+import Badge from '../../atoms/Badge/Badge';
+import {CurrentGame} from '../../../types/game';
 
 const GamePlayersPanel = () => {
-  const players = useSelector<RootState>
-  (state => state.game.currentGame?.players) as Player[];
-
-  const invitePeople = () => {
-
-  }
+  const {players, player: currentPlayer} =
+    useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
 
   return (
     <TableConstructor<Player>
-      name='Players'
-      button={{
-        children: 'Invite people',
-        onClick: () => invitePeople()
-      }}
       settings={[
         {
           name: 'Name',
-          render: (option) => (
+          render: (player) => (
             <UserBadge
-              userId={option.userId}
-              username={option.username}
+              userId={player.userId}
+              username={player.username}
               size='medium'
+            />
+          )
+        },
+        {
+          name: 'Status',
+          render: (player) => (
+            <Badge
+              text={playerFullStatusNameTable[player.status]}
+              color={playerStatusColorsTable[player.status]}
+              size='s'
+              type='full-colored'
             />
           )
         }
       ]}
       options={players}
+      disabledRow={(player) => {
+        return player.id === currentPlayer.id;
+      }}
     />
   );
 };

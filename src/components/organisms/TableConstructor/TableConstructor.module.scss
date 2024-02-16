@@ -9,3 +9,15 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.disabled {
+    opacity: .7;
+    pointer-events: none;
+    border: 1px solid var(--border-additionaly);
+  }
+}

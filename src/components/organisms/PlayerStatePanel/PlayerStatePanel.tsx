@@ -12,6 +12,7 @@ import {
 } from '../../../utils/player';
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
+import Button from '../../atoms/Button/Button';
 
 const PlayerStatePanel = () => {
   const currentPlayer = useSelector<RootState>
@@ -34,6 +35,9 @@ const PlayerStatePanel = () => {
           />
         </Tooltip>
       </div>
+      <Button styled='secondary'>
+        Invite people
+      </Button>
     </EssentialBlock>
   );
 };

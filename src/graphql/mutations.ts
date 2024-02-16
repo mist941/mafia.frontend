@@ -48,6 +48,7 @@ export const CREATE_GAME = gql`
             }
             players {
                 id
+                role
                 status
                 userId
                 username
