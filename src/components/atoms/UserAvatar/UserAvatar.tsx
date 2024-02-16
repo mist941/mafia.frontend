@@ -1,11 +1,13 @@
 import React, {FC} from 'react';
 import styles from './UserAvatar.module.scss';
 import classNames from 'classnames';
+import {Id} from '../../../types/common';
+import stringToColor from 'string-to-color';
 
 type UserAvatarSizes = 'large' | 'medium';
 
-type UserAvatarProps = {
-  userId: number;
+export type UserAvatarProps = {
+  userId: Id;
   size?: UserAvatarSizes;
 }
 
@@ -19,8 +21,12 @@ type UserAvatarProps = {
  * @returns {JSX.Element} The rendered UserAvatar component.
  */
 const UserAvatar: FC<UserAvatarProps> = ({userId, size = 'large'}) => {
+
   return (
-    <div className={classNames(styles.avatar, styles[size])}>
+    <div 
+      className={classNames(styles.avatar, styles[size])} 
+      style={{backgroundColor: stringToColor(userId) + 25}}
+    >
       <img src={`https://robohash.org/${userId}?set=set4`} alt='User avatar'/>
     </div>
   );

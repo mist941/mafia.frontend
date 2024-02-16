@@ -18,7 +18,7 @@ const PlayerStatePanel = () => {
   (state => state.game.currentGame?.player) as CurrentPlayer;
 
   return (
-    <EssentialBlock>
+    <EssentialBlock className={styles.playerState}>
       <div className={styles.playerStatuses}>
         <Tooltip text='Your role'>
           <Badge

@@ -1,5 +1,5 @@
 import {Id} from './common';
-import {CurrentPlayer, PlayerI} from './player';
+import {CurrentPlayer, Player} from './player';
 
 export enum GamePeriods {
   START = 'start',
@@ -22,7 +22,7 @@ export interface Game {
 export interface CurrentGame {
   game: Game;
   player: CurrentPlayer;
-  players: Omit<PlayerI, 'role'>[];
+  players: Player[];
 }
 
 export interface CreateGameRequest {

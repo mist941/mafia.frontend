@@ -1,3 +1,9 @@
+.playerState {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .playerStatuses {
   display: flex;
   gap: 16px;

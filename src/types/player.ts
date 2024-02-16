@@ -11,7 +11,7 @@ export enum PlayerStatuses {
   KILLED = 'killed'
 }
 
-export interface PlayerI {
+export interface Player {
   id: Id;
   role: PlayerRoles;
   status: PlayerStatuses;
@@ -19,4 +19,4 @@ export interface PlayerI {
   username: string;
 }
 
-export type CurrentPlayer = Omit<PlayerI, 'userId' | 'username'>;
+export type CurrentPlayer = Omit<Player, 'userId' | 'username'>;

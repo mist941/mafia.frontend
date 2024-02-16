@@ -1,4 +1,7 @@
 .avatar {
+  border-radius: 50%;
+  overflow: hidden;
+
   &.large {
     height: 40px;
     width: 40px;
