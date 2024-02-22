@@ -17,4 +17,29 @@
   height: fit-content;
   border-radius: 16px;
   box-shadow: 0 4px 5px #0000001f;
+  position: relative;
+}
+
+.closeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  path {
+    transition: var(--transition);
+    fill: var(--bg-tertiary-default);
+  }
+
+  &:hover {
+    path {
+      fill: var(--bg-tertiary-hover);
+    }
+  }
+
+  &:active {
+    path {
+      fill: var(--bg-tertiary-pressed);
+    }
+  }
 }
