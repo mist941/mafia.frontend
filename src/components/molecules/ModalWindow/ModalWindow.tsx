@@ -10,15 +10,13 @@ type EssentialBlockProps = {
 const ModalWindow: FC<EssentialBlockProps> = ({children}) => {
 
   return (
-    <>
-      <div className={styles.modalWindow}>
-        <div className={styles.modalWindowContent}>
-          <EssentialBlock>
-            {children}
-          </EssentialBlock>
-        </div>
+    <div className={styles.modalWindow}>
+      <div className={styles.modalWindowContent}>
+        <EssentialBlock>
+          {children}
+        </EssentialBlock>
       </div>
-    </>
+    </div>
   );
 };
 
