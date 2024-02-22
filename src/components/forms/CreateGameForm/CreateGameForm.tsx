@@ -7,10 +7,10 @@ import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
-import {CREATE_GAME} from '../../../graphql/mutations';
 import {CreateGameRequest, CreateGameResponse} from '../../../types/game';
 import {useDispatch} from 'react-redux';
 import {updateCurrentGame} from '../../../store/game';
+import {CREATE_GAME} from '../../../graphql/game';
 
 type CreateRoomFormProps = {
   close: () => void;

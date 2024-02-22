@@ -12,8 +12,8 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {handleFormikErrors} from '../../../utils/common';
 import {FetchResult, useMutation} from '@apollo/client';
-import {SIGN_UP} from '../../../graphql/mutations';
 import {updateCurrentSessionData} from '../../../utils/auth';
+import {SIGN_UP} from '../../../graphql/auth';
 
 const SignUpForm: FC = () => {
   const [signUp] = useMutation(SIGN_UP);
