@@ -4,17 +4,25 @@ import Input from '../../atoms/Input/Input';
 import Typography from '../../atoms/Typography/Typography';
 import {Id} from '../../../types/common';
 
-type SearchItem = {
+export type DropDownOption = {
   id: Id;
   name: string;
 }
 
 type SearchDropDownProps = {
-  search: (query: string) => Promise<SearchItem[]> | SearchItem[];
+  search: (query: string) => void;
+  options: DropDownOption[];
+  onSelect: (option: DropDownOption) => void;
+  placeholder?: string;
 }
 
-const SearchDropDown: FC<SearchDropDownProps> = ({search}) => {
-  const [foundItems, setFoundItems] = useState<SearchItem[]>([]);
+const SearchDropDown: FC<SearchDropDownProps> = (
+  {
+    search,
+    options,
+    placeholder
+  }
+) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -24,13 +32,8 @@ const SearchDropDown: FC<SearchDropDownProps> = ({search}) => {
     }
 
     debounceTimeoutRef.current = setTimeout(async () => {
-      if (searchQuery) {
-        const searchResults = await search(searchQuery);
-        setFoundItems(searchResults);
-      } else {
-        setFoundItems([]);
-      }
-    }, 500);
+      search(searchQuery);
+    }, 300);
 
     return () => {
       if (debounceTimeoutRef.current) {
@@ -47,8 +50,8 @@ const SearchDropDown: FC<SearchDropDownProps> = ({search}) => {
 
   return (
     <div className={styles.searchDropDownWrap}>
-      <Input onChange={onChange}/>
-      {foundItems.length > 0 && (
+      <Input onChange={onChange} placeholder={placeholder}/>
+      {options?.length > 0 && (
         <div>
           <Typography.Heading1>
             found

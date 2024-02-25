@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import Button from '../../atoms/Button/Button';
 import ModalWindow from '../../molecules/ModalWindow/ModalWindow';
-import SearchDropDown from '../../molecules/SearchDropDown/SearchDropDown';
+import InviteUsersForm from '../../forms/InviteUsersForm/InviteUsersForm';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
+import {CurrentGame} from '../../../types/game';
 
 const InviteUserToGame = () => {
+  const {game, players} = useSelector<RootState>
+  (state => state.game.currentGame) as CurrentGame;
   const [isOpenInvitePopUp, setOpenInvitePopUp] = useState<boolean>(false);
+
+  const maxUsersToInvite: number = game.numberOfPlayers - players.length;
 
   const toggleInvitePopup = () => {
     setOpenInvitePopUp(prevState => !prevState);
@@ -13,16 +20,14 @@ const InviteUserToGame = () => {
   return (
     <>
       <Button styled='secondary' onClick={toggleInvitePopup}>
-        Invite people
+        Invite users
       </Button>
       {isOpenInvitePopUp && (
         <ModalWindow close={toggleInvitePopup}>
-          <SearchDropDown search={(query: string) => {
-            console.log(query)
-            return [];
-          }}/>
-          <Button styled='secondary'>Cancel</Button>
-          <Button>Invite</Button>
+          <InviteUsersForm
+            close={toggleInvitePopup}
+            maxUsersToInvite={maxUsersToInvite}
+          />
         </ModalWindow>
       )}
     </>
