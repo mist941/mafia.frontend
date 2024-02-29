@@ -29,10 +29,12 @@ const DropDownOption: FC<DropDownOptionProps> = (
 
   return (
     <li className={styles.option} onClick={select}>
-      {icon}
-      <Typography.Paragraph size='s'>
-        {name}
-      </Typography.Paragraph>
+      <div className={styles.leftSide}>
+        {icon}
+        <Typography.Paragraph size='s'>
+          {name}
+        </Typography.Paragraph>
+      </div>
     </li>
   );
 };

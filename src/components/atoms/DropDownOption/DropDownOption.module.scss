@@ -10,3 +10,9 @@
     background: var(--bg-light);
   }
 }
+
+.leftSide {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

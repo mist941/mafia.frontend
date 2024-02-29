@@ -12,6 +12,8 @@ import {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 import {Id} from '../../../types/common';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
+import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
+import styles from './InviteUsersForm.module.scss';
 
 type FormValues = {
   users: DropDownOptionType[];
@@ -76,6 +78,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
         options={foundUsers}
         filterOption={filterOption}
         placeholder='Start typing to find a user'
+        icon={<UserIcon className={styles.userIcon}/>}
       />
       <div>
         {values.users.map(user => user.name)}
