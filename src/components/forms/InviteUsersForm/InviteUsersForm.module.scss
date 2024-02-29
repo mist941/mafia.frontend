@@ -3,3 +3,21 @@
     fill: var(--bg-tertiary-default);
   }
 }
+
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.singleUser {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-additionaly);
+  gap: 10px;
+  transition: var(--transition);
+
+  &:hover {
+    opacity: .7;
+  }
+}

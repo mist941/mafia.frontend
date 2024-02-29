@@ -14,6 +14,8 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
 import styles from './InviteUsersForm.module.scss';
+import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
+import UserAvatar from '../../atoms/UserAvatar/UserAvatar';
 
 type FormValues = {
   users: DropDownOptionType[];
@@ -80,8 +82,17 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
         placeholder='Start typing to find a user'
         icon={<UserIcon className={styles.userIcon}/>}
       />
-      <div>
-        {values.users.map(user => user.name)}
+      <div className={styles.users}>
+        {values.users.map(user => (
+          <EssentialBlock
+            key={user.id}
+            padding='5px'
+            className={styles.singleUser}
+          >
+            <UserAvatar userId={user.id}/>
+            {user.name}
+          </EssentialBlock>
+        ))}
       </div>
       {errors.users && <Error error={errors.users as string}/>}
       <div className='formButtonsContainer'>
