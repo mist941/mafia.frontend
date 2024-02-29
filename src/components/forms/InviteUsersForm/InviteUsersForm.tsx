@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useState} from 'react';
-import SearchDropDown, {DropDownOption} from '../../molecules/SearchDropDown/SearchDropDown';
+import SearchDropDown, {DropDownOptionType} from '../../molecules/SearchDropDown/SearchDropDown';
 import Button from '../../atoms/Button/Button';
 import {useQuery} from '@apollo/client';
 import {SEARCH_USERS} from '../../../graphql/user';
@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 import Error from '../../atoms/Error/Error';
 
 type FormValues = {
-  users: DropDownOption[];
+  users: DropDownOptionType[];
 }
 
 type InviteUsersFormProps = {
@@ -40,7 +40,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
     },
   });
 
-  const foundUsers = useMemo<DropDownOption[]>(() => {
+  const foundUsers = useMemo<DropDownOptionType[]>(() => {
     const users = (data?.searchUsers ?? []) as User[];
     return users.map(user => ({id: user.id, name: user.username}));
   }, [data?.searchUsers]);
@@ -51,7 +51,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
     setSearchTerm(query);
   }
 
-  const selectOption = (option: DropDownOption) => {
+  const selectOption = (option: DropDownOptionType) => {
     setFieldValue('users', [...values.users, option]);
   }
 

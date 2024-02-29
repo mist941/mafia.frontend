@@ -1,26 +1,31 @@
-import React, {ChangeEvent, FC, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, ComponentType, FC, useEffect, useRef, useState} from 'react';
 import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
-import Typography from '../../atoms/Typography/Typography';
 import {Id} from '../../../types/common';
+import DropDownOption from '../../atoms/DropDownOption/DropDownOption';
 
-export type DropDownOption = {
+export type DropDownOptionType = {
   id: Id;
   name: string;
 }
 
 type SearchDropDownProps = {
   search: (query: string) => void;
-  options: DropDownOption[];
-  onSelect: (option: DropDownOption) => void;
+  options: DropDownOptionType[];
+  onSelect: (option: DropDownOptionType) => void;
   placeholder?: string;
+  OptionComponent?: ComponentType<DropDownOptionType>;
+  button?: string;
 }
 
 const SearchDropDown: FC<SearchDropDownProps> = (
   {
     search,
     options,
-    placeholder
+    placeholder,
+    OptionComponent = DropDownOption,
+    onSelect,
+    button
   }
 ) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -53,9 +58,14 @@ const SearchDropDown: FC<SearchDropDownProps> = (
       <Input onChange={onChange} placeholder={placeholder}/>
       {options?.length > 0 && (
         <div>
-          <Typography.Heading1>
-            found
-          </Typography.Heading1>
+          {options.map((option, index) => (
+            <OptionComponent
+              key={index}
+              onSelect={onSelect}
+              button={button}
+              {...option}
+            />
+          ))}
         </div>
       )}
     </div>
