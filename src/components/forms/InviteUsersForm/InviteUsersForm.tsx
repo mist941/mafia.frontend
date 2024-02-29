@@ -9,6 +9,9 @@ import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Error from '../../atoms/Error/Error';
 import {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
+import {Id} from '../../../types/common';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
 
 type FormValues = {
   users: DropDownOptionType[];
@@ -20,6 +23,7 @@ type InviteUsersFormProps = {
 }
 
 const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) => {
+  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
   const [searchTerm, setSearchTerm] = useState<string>('');
   const {data} = useQuery<{ searchUsers: User }>(SEARCH_USERS, {
     variables: {
@@ -56,6 +60,11 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
     setFieldValue('users', [...values.users, option]);
   }
 
+  const filterOption = (option: DropDownOptionType) => {
+    const userIds: Id[] = values.users.map(user => user.id);
+    return !userIds.includes(option.id) && option.id !== currentUser.id;
+  }
+
   return (
     <form className='formContainer' onSubmit={handleSubmit}>
       <Typography.Heading4>
@@ -65,7 +74,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
         search={updateSearchTerm}
         onSelect={selectOption}
         options={foundUsers}
-        selectedOptions={values.users}
+        filterOption={filterOption}
         placeholder='Start typing to find a user'
       />
       <div>

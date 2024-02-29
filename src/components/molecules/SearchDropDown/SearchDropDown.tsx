@@ -1,14 +1,13 @@
-import React, {ChangeEvent, ComponentType, FC, ReactElement, useEffect, useMemo, useRef, useState} from 'react';
+import React, {ChangeEvent, ComponentType, FC, ReactElement, useEffect, useRef, useState} from 'react';
 import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
 import DropDownOption, {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 import useOutsideClicker from '../../../hooks/useOutsideClicker';
-import {Id} from '../../../types/common';
 
 type SearchDropDownProps = {
   search: (query: string) => void;
   options: DropDownOptionType[];
-  selectedOptions: DropDownOptionType[];
+  filterOption?: (option: DropDownOptionType) => boolean;
   onSelect: (option: DropDownOptionType) => void;
   placeholder?: string;
   OptionComponent?: ComponentType<DropDownOptionType>;
@@ -20,7 +19,7 @@ const SearchDropDown: FC<SearchDropDownProps> = (
   {
     search,
     options,
-    selectedOptions,
+    filterOption,
     placeholder,
     OptionComponent = DropDownOption,
     onSelect,
@@ -36,10 +35,7 @@ const SearchDropDown: FC<SearchDropDownProps> = (
   const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const filteredOptions = useMemo<DropDownOptionType[]>(() => {
-    const selectedOptionIds: Id[] = selectedOptions.map(option => option.id);
-    return options.filter(option => !selectedOptionIds.includes(option.id));
-  }, [options, selectedOptions]);
+  const filteredOptions = filterOption ? options.filter(filterOption) : options;
 
   useEffect(() => {
     if (debounceTimeoutRef.current) {
