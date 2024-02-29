@@ -60,11 +60,15 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
     setSearchTerm(query);
   }
 
-  const selectOption = (option: DropDownOptionType) => {
+  const selectUser = (option: DropDownOptionType) => {
     setFieldValue('users', [...values.users, option]);
   }
 
-  const filterOption = (option: DropDownOptionType) => {
+  const removeUser = (id: Id) => {
+    setFieldValue('users', values.users.filter(user => user.id !== id));
+  }
+
+  const filterUser = (option: DropDownOptionType) => {
     const userIds: Id[] = values.users.map(user => user.id);
     return !userIds.includes(option.id) && option.id !== currentUser.id;
   }
@@ -76,9 +80,9 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
       </Typography.Heading4>
       <SearchDropDown
         search={updateSearchTerm}
-        onSelect={selectOption}
+        onSelect={selectUser}
         options={foundUsers}
-        filterOption={filterOption}
+        filterOption={filterUser}
         placeholder='Start typing to find a user'
         icon={<UserIcon className={styles.userIcon}/>}
       />
@@ -86,11 +90,21 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
         {values.users.map(user => (
           <EssentialBlock
             key={user.id}
-            padding='5px'
+            padding='6px 12px'
             className={styles.singleUser}
           >
-            <UserAvatar userId={user.id}/>
-            {user.name}
+            <div className={styles.leftSide}>
+              <UserAvatar userId={user.id}/>
+              <Typography.Paragraph size='m'>
+                {user.name}
+              </Typography.Paragraph>
+            </div>
+            <Button
+              styled='secondary-transparent'
+              onClick={() => removeUser(user.id)}
+            >
+              Remove
+            </Button>
           </EssentialBlock>
         ))}
       </div>

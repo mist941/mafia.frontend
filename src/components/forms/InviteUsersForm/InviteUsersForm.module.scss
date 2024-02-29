@@ -13,11 +13,17 @@
 .singleUser {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid var(--border-additionaly);
-  gap: 10px;
   transition: var(--transition);
 
   &:hover {
     opacity: .7;
   }
+}
+
+.leftSide {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
