@@ -1,11 +1,14 @@
-import React, {ChangeEvent, ComponentType, FC, ReactElement, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, ComponentType, FC, ReactElement, useEffect, useMemo, useRef, useState} from 'react';
 import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
 import DropDownOption, {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
+import useOutsideClicker from '../../../hooks/useOutsideClicker';
+import {Id} from '../../../types/common';
 
 type SearchDropDownProps = {
   search: (query: string) => void;
   options: DropDownOptionType[];
+  selectedOptions: DropDownOptionType[];
   onSelect: (option: DropDownOptionType) => void;
   placeholder?: string;
   OptionComponent?: ComponentType<DropDownOptionType>;
@@ -17,16 +20,26 @@ const SearchDropDown: FC<SearchDropDownProps> = (
   {
     search,
     options,
+    selectedOptions,
     placeholder,
     OptionComponent = DropDownOption,
     onSelect,
     button,
-    icon
+    icon,
   }
 ) => {
+  const dropDownRef = useOutsideClicker(() => {
+      closeMenu();
+    }
+  )
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const filteredOptions = useMemo<DropDownOptionType[]>(() => {
+    const selectedOptionIds: Id[] = selectedOptions.map(option => option.id);
+    return options.filter(option => !selectedOptionIds.includes(option.id));
+  }, [options, selectedOptions]);
 
   useEffect(() => {
     if (debounceTimeoutRef.current) {
@@ -50,23 +63,35 @@ const SearchDropDown: FC<SearchDropDownProps> = (
     setSearchQuery(query);
   }
 
-  const toggleMenuOpen = () => {
-    setOpenMenu(prevState => !prevState);
+  const openMenu = () => {
+    setOpenMenu(true);
+  }
+
+  const closeMenu = () => {
+    setOpenMenu(false);
+  }
+
+  const select = (option: DropDownOptionType) => {
+    onSelect(option);
+    closeMenu();
   }
 
   return (
-    <div className={styles.searchDropDownWrap}>
+    <div
+      className={styles.searchDropDownWrap}
+      ref={dropDownRef}
+    >
       <Input
         onChange={onChange}
-        onFocus={toggleMenuOpen}
+        onFocus={openMenu}
         placeholder={placeholder}
       />
-      {isOpenMenu && (
+      {(isOpenMenu && filteredOptions.length > 0) && (
         <ul className={styles.menu}>
-          {options.map((option) => (
+          {filteredOptions.map((option) => (
             <OptionComponent
               key={option.id}
-              onSelect={onSelect}
+              onSelect={select}
               button={button}
               icon={icon}
               {...option}

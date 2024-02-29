@@ -1,10 +1,6 @@
 import {useEffect, useRef} from 'react';
 
-type UseOutsideClickerProps = {
-  onOutsideClick: () => void;
-};
-
-const useOutsideClicker = ({onOutsideClick}: UseOutsideClickerProps) => {
+const useOutsideClicker = (onOutsideClick: () => void) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
