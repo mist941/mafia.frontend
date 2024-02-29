@@ -3,8 +3,6 @@ import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
 import DropDownOption, {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 
-
-
 type SearchDropDownProps = {
   search: (query: string) => void;
   options: DropDownOptionType[];
@@ -25,6 +23,7 @@ const SearchDropDown: FC<SearchDropDownProps> = (
   }
 ) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -49,20 +48,29 @@ const SearchDropDown: FC<SearchDropDownProps> = (
     setSearchQuery(query);
   }
 
+  const toggleMenuOpen = () => {
+    setOpenMenu(prevState => !prevState);
+  }
+
   return (
     <div className={styles.searchDropDownWrap}>
-      <Input onChange={onChange} placeholder={placeholder}/>
-      {options?.length > 0 && (
-        <div>
-          {options.map((option, index) => (
+      <Input
+        onChange={onChange}
+        onFocus={toggleMenuOpen}
+        onBlur={toggleMenuOpen}
+        placeholder={placeholder}
+      />
+      {isOpenMenu && (
+        <ul className={styles.menu}>
+          {options.map((option) => (
             <OptionComponent
-              key={index}
+              key={option.id}
               onSelect={onSelect}
               button={button}
               {...option}
             />
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );

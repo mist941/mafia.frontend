@@ -2,4 +2,21 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  border-radius: 8px;
+  padding: 12px 0;
+  border: 1px solid var(--border-bright);
+  transition: var(--transition);
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--bg-base);
+  width: 100%;
+
+  &:hover {
+    border: 1px solid var(--border-additionaly);
+  }
 }

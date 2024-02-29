@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styles from './DropDownOption.module.scss';
 import {Id} from '../../../types/common';
+import Typography from '../Typography/Typography';
 
 export type DropDownOptionType = {
   id: Id;
@@ -12,11 +13,13 @@ type DropDownOptionProps = DropDownOptionType & {
   button?: string;
 };
 
-const DropDownOption: FC<DropDownOptionProps> = () => {
+const DropDownOption: FC<DropDownOptionProps> = ({name}) => {
   return (
-    <div className={styles.option}>
-      Option
-    </div>
+    <li className={styles.option}>
+      <Typography.Paragraph size='s'>
+        {name}
+      </Typography.Paragraph>
+    </li>
   );
 };
 
