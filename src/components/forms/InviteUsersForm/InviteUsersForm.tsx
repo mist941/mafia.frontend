@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useState} from 'react';
-import SearchDropDown, {DropDownOptionType} from '../../molecules/SearchDropDown/SearchDropDown';
+import SearchDropDown from '../../molecules/SearchDropDown/SearchDropDown';
 import Button from '../../atoms/Button/Button';
 import {useQuery} from '@apollo/client';
 import {SEARCH_USERS} from '../../../graphql/user';
@@ -8,6 +8,7 @@ import {User} from '../../../types/user';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import Error from '../../atoms/Error/Error';
+import {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 
 type FormValues = {
   users: DropDownOptionType[];

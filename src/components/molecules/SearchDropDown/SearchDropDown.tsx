@@ -1,13 +1,9 @@
 import React, {ChangeEvent, ComponentType, FC, useEffect, useRef, useState} from 'react';
 import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
-import {Id} from '../../../types/common';
-import DropDownOption from '../../atoms/DropDownOption/DropDownOption';
+import DropDownOption, {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 
-export type DropDownOptionType = {
-  id: Id;
-  name: string;
-}
+
 
 type SearchDropDownProps = {
   search: (query: string) => void;

@@ -1,6 +1,11 @@
 import React, {FC} from 'react';
 import styles from './DropDownOption.module.scss';
-import {DropDownOptionType} from '../../molecules/SearchDropDown/SearchDropDown';
+import {Id} from '../../../types/common';
+
+export type DropDownOptionType = {
+  id: Id;
+  name: string;
+}
 
 type DropDownOptionProps = DropDownOptionType & {
   onSelect: (option: DropDownOptionType) => void;
