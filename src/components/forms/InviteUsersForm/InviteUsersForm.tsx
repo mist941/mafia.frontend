@@ -65,7 +65,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
         search={updateSearchTerm}
         onSelect={selectOption}
         options={foundUsers}
-        placeholder='Type to search'
+        placeholder='Start typing to find a user'
       />
       <div>
         {values.users.map(user => user.name)}
