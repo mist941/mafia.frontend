@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ComponentType, FC, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, ComponentType, FC, ReactElement, useEffect, useRef, useState} from 'react';
 import styles from './SearchDropDown.module.scss';
 import Input from '../../atoms/Input/Input';
 import DropDownOption, {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
@@ -10,6 +10,7 @@ type SearchDropDownProps = {
   placeholder?: string;
   OptionComponent?: ComponentType<DropDownOptionType>;
   button?: string;
+  icon?: ReactElement;
 }
 
 const SearchDropDown: FC<SearchDropDownProps> = (
@@ -19,7 +20,8 @@ const SearchDropDown: FC<SearchDropDownProps> = (
     placeholder,
     OptionComponent = DropDownOption,
     onSelect,
-    button
+    button,
+    icon
   }
 ) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -57,7 +59,6 @@ const SearchDropDown: FC<SearchDropDownProps> = (
       <Input
         onChange={onChange}
         onFocus={toggleMenuOpen}
-        onBlur={toggleMenuOpen}
         placeholder={placeholder}
       />
       {isOpenMenu && (
@@ -67,6 +68,7 @@ const SearchDropDown: FC<SearchDropDownProps> = (
               key={option.id}
               onSelect={onSelect}
               button={button}
+              icon={icon}
               {...option}
             />
           ))}

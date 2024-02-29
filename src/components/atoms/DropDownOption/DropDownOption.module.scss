@@ -1,3 +1,12 @@
 .option {
-  
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  transition: var(--transition);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--bg-light);
+  }
 }

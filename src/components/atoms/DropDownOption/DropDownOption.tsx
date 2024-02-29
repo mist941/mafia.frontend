@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, ReactElement} from 'react';
 import styles from './DropDownOption.module.scss';
 import {Id} from '../../../types/common';
 import Typography from '../Typography/Typography';
@@ -11,11 +11,25 @@ export type DropDownOptionType = {
 type DropDownOptionProps = DropDownOptionType & {
   onSelect: (option: DropDownOptionType) => void;
   button?: string;
+  icon?: ReactElement;
 };
 
-const DropDownOption: FC<DropDownOptionProps> = ({name}) => {
+const DropDownOption: FC<DropDownOptionProps> = (
+  {
+    id,
+    name,
+    icon,
+    onSelect
+  }
+) => {
+
+  const select = () => {
+    onSelect({id, name});
+  }
+
   return (
-    <li className={styles.option}>
+    <li className={styles.option} onClick={select}>
+      {icon}
       <Typography.Paragraph size='s'>
         {name}
       </Typography.Paragraph>
