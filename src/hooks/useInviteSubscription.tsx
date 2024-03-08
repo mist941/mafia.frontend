@@ -18,8 +18,7 @@ export const useInviteSubscription = () => {
   const [currentInviteGame, setCurrentInviteGame] =
     useState<CurrentInviteGame | null>(null);
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
-  const {data} = useSubscription<{ invitePlayersSubscription: InvitePlayersResponse }>
-  (INVITE_PLAYERS_SUBSCRIPTION, {
+  const {data} = useSubscription<{ invitePlayersSubscription: InvitePlayersResponse }>(INVITE_PLAYERS_SUBSCRIPTION, {
     variables: {
       userId: currentUser?.id,
     },
@@ -42,7 +41,10 @@ export const useInviteSubscription = () => {
 
   return (
     <ModalWindow close={clearInvite}>
-      <InvitePopUp close={clearInvite} game={currentInviteGame}/>
+      <InvitePopUp
+        close={clearInvite}
+        game={currentInviteGame}
+      />
     </ModalWindow>
   );
 }
