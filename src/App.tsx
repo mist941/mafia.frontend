@@ -5,8 +5,10 @@ import {useSelector} from 'react-redux';
 import {RootState} from './store/store';
 import {User} from './types/user';
 import paths from './routing/paths';
+import {useInviteSubscription} from './hooks/useInviteSubscription';
 
 function App() {
+  const invitePopUp = useInviteSubscription();
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
 
   useEffect(() => {
@@ -33,6 +35,7 @@ function App() {
           </Route>
         ))}
       </Routes>
+      {invitePopUp}
     </Suspense>
   );
 }

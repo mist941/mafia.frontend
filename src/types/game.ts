@@ -32,3 +32,8 @@ export interface CreateGameRequest {
 }
 
 export type CreateGameResponse = CurrentGame;
+
+export interface InvitePlayersResponse {
+  gameId: Id;
+  userIds: Id[];
+}
