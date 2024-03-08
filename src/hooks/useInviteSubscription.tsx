@@ -16,7 +16,8 @@ export const useInviteSubscription = () => {
   const [currentInviteGame, setCurrentInviteGame] =
     useState<CurrentInviteGame | null>(null);
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
-  const {data} = useSubscription<InvitePlayersResponse>(INVITE_PLAYERS_SUBSCRIPTION, {
+  const {data} = useSubscription<{ invitePlayersSubscription: InvitePlayersResponse }>
+  (INVITE_PLAYERS_SUBSCRIPTION, {
     variables: {
       userId: currentUser?.id,
     },
@@ -24,8 +25,10 @@ export const useInviteSubscription = () => {
   });
 
   useEffect(() => {
-    if (data?.gameName && data?.gameId) {
-      setCurrentInviteGame({id: 5, name: 'dsa'});
+    const game = data?.invitePlayersSubscription;
+
+    if (game) {
+      setCurrentInviteGame({id: game.gameId, name: game.gameName});
     }
   }, [data]);
 
@@ -33,7 +36,7 @@ export const useInviteSubscription = () => {
 
   return (
     <div>
-      {data?.gameId}
+      {currentInviteGame?.name}
     </div>
   );
 }
