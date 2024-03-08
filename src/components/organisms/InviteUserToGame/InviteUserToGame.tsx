@@ -27,6 +27,7 @@ const InviteUserToGame = () => {
           <InviteUsersForm
             close={toggleInvitePopup}
             maxUsersToInvite={maxUsersToInvite}
+            gameId={game.id}
           />
         </ModalWindow>
       )}

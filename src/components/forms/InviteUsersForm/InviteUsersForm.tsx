@@ -1,7 +1,7 @@
 import React, {FC, useMemo, useState} from 'react';
 import SearchDropDown from '../../molecules/SearchDropDown/SearchDropDown';
 import Button from '../../atoms/Button/Button';
-import {useQuery} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import {SEARCH_USERS} from '../../../graphql/user';
 import Typography from '../../atoms/Typography/Typography';
 import {User} from '../../../types/user';
@@ -16,6 +16,7 @@ import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
 import styles from './InviteUsersForm.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import UserAvatar from '../../atoms/UserAvatar/UserAvatar';
+import {INVITE_PLAYERS} from '../../../graphql/game';
 
 type FormValues = {
   users: DropDownOptionType[];
@@ -24,9 +25,11 @@ type FormValues = {
 type InviteUsersFormProps = {
   close: () => void;
   maxUsersToInvite: number;
+  gameId: Id;
 }
 
-const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) => {
+const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gameId}) => {
+  const [invitePlayers] = useMutation(INVITE_PLAYERS);
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
   const [searchTerm, setSearchTerm] = useState<string>('');
   const {data} = useQuery<{ searchUsers: User }>(SEARCH_USERS, {
@@ -44,8 +47,12 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite}) =>
     validationSchema: Yup.object({
       users: Yup.array().max(maxUsersToInvite, `You cannot add more than ${maxUsersToInvite} players`)
     }),
-    onSubmit: async () => {
+    onSubmit:({users}) => {
+     const userIds = users.map(user=>user.id);
 
+      invitePlayers({
+        variables: {userIds, gameId},
+      });
     },
   });
 

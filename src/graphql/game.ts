@@ -29,11 +29,20 @@ export const CREATE_GAME = gql`
     }
 `;
 
-export const INVITE_PLAYER = gql`
+export const INVITE_PLAYERS = gql`
+    mutation InvitePlayers($invitePlayersInput: InvitePlayersRequestDTO!){
+        invitePlayers(invitePlayersInput: $invitePlayersInput){
+            gameId
+            userIds
+        }
+    }
+`;
+
+export const INVITE_PLAYERS_SUBSCRIPTION = gql`
     subscription InvitePlayersSubscription($userId: Float!) {
         invitePlayersSubscription(userId: $userId) {
             gameId
-            playerIds
+            userIds
         }
   }
 `;
