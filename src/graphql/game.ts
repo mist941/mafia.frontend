@@ -30,8 +30,8 @@ export const CREATE_GAME = gql`
 `;
 
 export const INVITE_PLAYER = gql`
-    subscription InvitePlayersSubscription($invitePlayersSubscription: InvitePlayersResponseDTO!) {
-        invitePlayersSubscription(invitePlayersSubscription: $invitePlayersSubscription) {
+    subscription InvitePlayersSubscription($userId: Float!) {
+        invitePlayersSubscription(userId: $userId) {
             gameId
             playerIds
         }
