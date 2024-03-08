@@ -6,8 +6,10 @@ import {useSubscription} from '@apollo/client';
 import {useEffect, useState} from 'react';
 import {InvitePlayersResponse} from '../types/game';
 import {Id} from '../types/common';
+import ModalWindow from '../components/molecules/ModalWindow/ModalWindow';
+import InvitePopUp from '../components/organisms/InvitePopUp/InvitePopUp';
 
-type CurrentInviteGame = {
+export type CurrentInviteGame = {
   id: Id;
   name: string;
 }
@@ -32,11 +34,15 @@ export const useInviteSubscription = () => {
     }
   }, [data]);
 
+  const clearInvite = () => {
+    setCurrentInviteGame(null);
+  }
+
   if (!currentInviteGame) return;
 
   return (
-    <div>
-      {currentInviteGame?.name}
-    </div>
+    <ModalWindow close={clearInvite}>
+      <InvitePopUp close={clearInvite} game={currentInviteGame}/>
+    </ModalWindow>
   );
 }
