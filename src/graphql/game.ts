@@ -28,3 +28,12 @@ export const CREATE_GAME = gql`
         }
     }
 `;
+
+export const INVITE_PLAYER = gql`
+    subscription InvitePlayersSubscription($invitePlayersSubscription: InvitePlayersResponseDTO!) {
+        invitePlayersSubscription(invitePlayersSubscription: $invitePlayersSubscription) {
+            gameId
+            playerIds
+        }
+  }
+`;
