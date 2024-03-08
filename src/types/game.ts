@@ -35,5 +35,5 @@ export type CreateGameResponse = CurrentGame;
 
 export interface InvitePlayersResponse {
   gameId: Id;
-  userIds: Id[];
+  gameName: string;
 }

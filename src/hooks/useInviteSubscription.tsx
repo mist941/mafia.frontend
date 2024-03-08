@@ -24,8 +24,7 @@ export const useInviteSubscription = () => {
   });
 
   useEffect(() => {
-    console.log(data);
-    if (data?.userIds?.length && data?.gameId) {
+    if (data?.gameName && data?.gameId) {
       setCurrentInviteGame({id: 5, name: 'dsa'});
     }
   }, [data]);
