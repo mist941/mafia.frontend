@@ -50,9 +50,9 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gam
     }),
     onSubmit: ({users}) => {
       const userIds = users.map(user => user.id);
-
+      const invitePlayerValues = {userIds, gameName: game.name, gameId: game.id};
       invitePlayers({
-        variables: {invitePlayersInput: {userIds, game}},
+        variables: {invitePlayersInput: invitePlayerValues},
       });
 
       close();

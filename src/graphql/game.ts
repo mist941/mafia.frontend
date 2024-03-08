@@ -32,7 +32,9 @@ export const CREATE_GAME = gql`
 export const INVITE_PLAYERS = gql`
     mutation InvitePlayers($invitePlayersInput: InvitePlayersRequestDTO!){
         invitePlayers(invitePlayersInput: $invitePlayersInput){
-            
+            gameId
+            userIds
+            gameName
         }
     }
 `;
