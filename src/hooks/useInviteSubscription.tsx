@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react';
 import {InvitePlayersResponse} from '../types/game';
 import {Id} from '../types/common';
 import ModalWindow from '../components/molecules/ModalWindow/ModalWindow';
-import InvitePopUp from '../components/organisms/InvitePopUp/InvitePopUp';
+import AcceptInviteForm from '../components/forms/AcceptInviteForm/AcceptInviteForm';
 
 export type CurrentInviteGame = {
   id: Id;
@@ -41,7 +41,7 @@ export const useInviteSubscription = () => {
 
   return (
     <ModalWindow close={clearInvite}>
-      <InvitePopUp
+      <AcceptInviteForm
         close={clearInvite}
         game={currentInviteGame}
       />

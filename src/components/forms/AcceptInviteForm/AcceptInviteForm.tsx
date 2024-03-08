@@ -3,23 +3,23 @@ import Typography from '../../atoms/Typography/Typography';
 import {CurrentInviteGame} from '../../../hooks/useInviteSubscription';
 import Button from '../../atoms/Button/Button';
 
-type InvitePopUp = {
+type AcceptInviteForm = {
   game: CurrentInviteGame;
   close: () => void;
 }
 
-const InvitePopUp:FC<InvitePopUp> = ({game, close}) => {
-  
+const AcceptInviteForm: FC<AcceptInviteForm> = ({game, close}) => {
+
   const accept = () => {
     close();
   }
 
   return (
-    <div>
-      <Typography.Heading3>
-        Invite
-        You have been invited to the game "{game?.name}"
-      </Typography.Heading3>
+    <div className='formContainer'>
+      <Typography.Heading4>Invite</Typography.Heading4>
+      <Typography.Paragraph color='light'>
+        You have been invited to join the game "{game.name}". Do you want to accept the invitation?
+      </Typography.Paragraph>
       <div className='formButtonsContainer'>
         <Button styled='secondary' onClick={close}>Cancel</Button>
         <Button type='submit' onClick={accept}>Accept</Button>
@@ -28,4 +28,4 @@ const InvitePopUp:FC<InvitePopUp> = ({game, close}) => {
   );
 };
 
-export default InvitePopUp;
+export default AcceptInviteForm;
