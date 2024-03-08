@@ -3,7 +3,7 @@ import {RootState} from '../store/store';
 import {User} from '../types/user';
 import {INVITE_PLAYERS_SUBSCRIPTION} from '../graphql/game';
 import {useSubscription} from '@apollo/client';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {InvitePlayersResponse} from '../types/game';
 import {Id} from '../types/common';
 
@@ -18,12 +18,17 @@ export const useInviteSubscription = () => {
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
   const {data} = useSubscription<InvitePlayersResponse>(INVITE_PLAYERS_SUBSCRIPTION, {
     variables: {
-      userId: currentUser.id,
+      userId: currentUser?.id,
     },
-    onData: (data) => {
-      console.log(data);
-    }
+    skip: !currentUser?.id
   });
+
+  useEffect(() => {
+    console.log(data);
+    if (data?.userIds?.length && data?.gameId) {
+      setCurrentInviteGame({id: 5, name: 'dsa'});
+    }
+  }, [data]);
 
   if (!currentInviteGame) return;
 

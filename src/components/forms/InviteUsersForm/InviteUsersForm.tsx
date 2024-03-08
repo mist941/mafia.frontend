@@ -17,6 +17,7 @@ import styles from './InviteUsersForm.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import UserAvatar from '../../atoms/UserAvatar/UserAvatar';
 import {INVITE_PLAYERS} from '../../../graphql/game';
+import {Game} from '../../../types/game';
 
 type FormValues = {
   users: DropDownOptionType[];
@@ -25,10 +26,10 @@ type FormValues = {
 type InviteUsersFormProps = {
   close: () => void;
   maxUsersToInvite: number;
-  gameId: Id;
+  game: Game;
 }
 
-const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gameId}) => {
+const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, game}) => {
   const [invitePlayers] = useMutation(INVITE_PLAYERS);
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -51,7 +52,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gam
       const userIds = users.map(user => user.id);
 
       invitePlayers({
-        variables: {invitePlayersInput: {userIds, gameId}},
+        variables: {invitePlayersInput: {userIds, game}},
       });
 
       close();
