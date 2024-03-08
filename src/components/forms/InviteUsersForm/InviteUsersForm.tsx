@@ -47,12 +47,14 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gam
     validationSchema: Yup.object({
       users: Yup.array().max(maxUsersToInvite, `You cannot add more than ${maxUsersToInvite} players`)
     }),
-    onSubmit:({users}) => {
-     const userIds = users.map(user=>user.id);
+    onSubmit: ({users}) => {
+      const userIds = users.map(user => user.id);
 
       invitePlayers({
-        variables: {userIds, gameId},
+        variables: {invitePlayersInput: {userIds, gameId}},
       });
+
+      close();
     },
   });
 
