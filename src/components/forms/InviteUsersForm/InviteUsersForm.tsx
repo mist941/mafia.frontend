@@ -10,8 +10,6 @@ import * as Yup from 'yup';
 import Error from '../../atoms/Error/Error';
 import {DropDownOptionType} from '../../atoms/DropDownOption/DropDownOption';
 import {Id} from '../../../types/common';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
 import {ReactComponent as UserIcon} from '../../../assets/icons/user.svg';
 import styles from './InviteUsersForm.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
@@ -27,11 +25,18 @@ type InviteUsersFormProps = {
   close: () => void;
   maxUsersToInvite: number;
   game: Game;
+  alreadyAddedUserIds: Id[];
 }
 
-const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, game}) => {
+const InviteUsersForm: FC<InviteUsersFormProps> = (
+  {
+    close,
+    alreadyAddedUserIds,
+    maxUsersToInvite,
+    game
+  }
+) => {
   const [invitePlayers] = useMutation(INVITE_PLAYERS);
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
   const [searchTerm, setSearchTerm] = useState<string>('');
   const {data} = useQuery<{ searchUsers: User }>(SEARCH_USERS, {
     variables: {
@@ -79,8 +84,8 @@ const InviteUsersForm: FC<InviteUsersFormProps> = ({close, maxUsersToInvite, gam
   }
 
   const filterUser = (option: DropDownOptionType) => {
-    const userIds: Id[] = values.users.map(user => user.id);
-    return !userIds.includes(option.id) && option.id !== currentUser.id;
+    const userIds: Id[] = values.users.map(user => user.id).concat(alreadyAddedUserIds);
+    return !userIds.includes(option.id);
   }
 
   return (

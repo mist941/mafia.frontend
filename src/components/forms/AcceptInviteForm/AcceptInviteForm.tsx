@@ -26,7 +26,6 @@ const AcceptInviteForm: FC<AcceptInviteForm> = ({game, close}) => {
 
     if (addNewPlayerResponse.data?.addNewPlayer) {
       updateCurrentGameData(addNewPlayerResponse.data?.addNewPlayer);
-      close();
     }
 
     close();
