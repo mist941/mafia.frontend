@@ -19,6 +19,7 @@ const MainPage = () => {
   const {data} = useSubscription<{ syncGameSubscription: CurrentGame }>(SYNC_GAME_SUBSCRIPTION, {
     variables: {
       gameId: currentGame?.game?.id,
+      playerId: currentGame?.player?.id,
     },
     skip: !currentGame?.game?.id
   });

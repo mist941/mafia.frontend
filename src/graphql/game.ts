@@ -17,6 +17,8 @@ export const CREATE_GAME = gql`
                 id
                 role
                 status
+                userId
+                username
             }
             players {
                 id
@@ -49,8 +51,8 @@ export const INVITE_PLAYERS_SUBSCRIPTION = gql`
 `;
 
 export const SYNC_GAME_SUBSCRIPTION = gql`
-    subscription SyncGameSubscription($gameId: Float!) {
-        syncGameSubscription(gameId: $gameId) {
+    subscription SyncGameSubscription($gameId: Float! $playerId: Float!) {
+        syncGameSubscription(gameId: $gameId playerId: $playerId) {
             game {
                 id
                 name
@@ -65,6 +67,8 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 id
                 role
                 status
+                userId
+                username
             }
             players {
                 id
@@ -94,6 +98,8 @@ export const ADD_NEW_PLAYER = gql`
                 id
                 role
                 status
+                userId
+                username
             }
             players {
                 id
