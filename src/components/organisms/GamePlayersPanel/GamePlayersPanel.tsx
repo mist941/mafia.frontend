@@ -12,6 +12,12 @@ const GamePlayersPanel = () => {
   const {players, player: currentPlayer} =
     useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
 
+  const sortedPlayers = players.slice().sort((a: Player, b: Player) => {
+    if (b.id === currentPlayer.id) return 1;
+    if (a.id === currentPlayer.id) return -1;
+    return 0;
+  });
+
   return (
     <TableConstructor<Player>
       settings={[
@@ -37,7 +43,7 @@ const GamePlayersPanel = () => {
           )
         }
       ]}
-      options={players}
+      options={sortedPlayers}
       disabledRow={(player) => {
         return player.id === currentPlayer.id;
       }}
