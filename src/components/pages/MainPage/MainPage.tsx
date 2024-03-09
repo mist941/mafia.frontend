@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MainTemplate from '../../templates/MainTemplate/MainTemplate';
 import styles from './MainPage.module.scss';
 import {useSelector} from 'react-redux';
@@ -9,9 +9,26 @@ import PlayerStatePanel from '../../organisms/PlayerStatePanel/PlayerStatePanel'
 import GameStatePanel from '../../organisms/GameStatePanel/GameStatePanel';
 import GamePlayersPanel from '../../organisms/GamePlayersPanel/GamePlayersPanel';
 import GameChatPanel from '../../organisms/GameChatPanel/GameChatPanel';
+import {useSubscription} from '@apollo/client';
+import {SYNC_GAME_SUBSCRIPTION} from '../../../graphql/game';
 
 const MainPage = () => {
   const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
+
+  const {data} = useSubscription<{ syncGameSubscription: CurrentGame }>(SYNC_GAME_SUBSCRIPTION, {
+    variables: {
+      gameId: currentGame?.game?.id,
+    },
+    skip: !currentGame?.game?.id
+  });
+
+  useEffect(() => {
+    const game = data?.syncGameSubscription;
+
+    if (game) {
+      console.log(game);
+    }
+  }, [data]);
 
   return (
     <MainTemplate>

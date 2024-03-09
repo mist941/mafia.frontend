@@ -47,3 +47,32 @@ export const INVITE_PLAYERS_SUBSCRIPTION = gql`
         }
   }
 `;
+
+export const SYNC_GAME_SUBSCRIPTION = gql`
+    subscription SyncGameSubscription($gameId: Float!) {
+        syncGameSubscription(userId: $userId) {
+            game {
+                id
+                name
+                numberOfPlayers
+                ownerId
+                currentPeriod
+                currentRole
+                private
+                createdAt
+            }
+            player {
+                id
+                role
+                status
+            }
+            players {
+                id
+                role
+                status
+                userId
+                username
+            }
+        }
+  }
+`;
