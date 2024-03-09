@@ -50,7 +50,7 @@ export const INVITE_PLAYERS_SUBSCRIPTION = gql`
 
 export const SYNC_GAME_SUBSCRIPTION = gql`
     subscription SyncGameSubscription($gameId: Float!) {
-        syncGameSubscription(userId: $userId) {
+        syncGameSubscription(gameId: $gameId) {
             game {
                 id
                 name

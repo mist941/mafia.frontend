@@ -11,6 +11,7 @@ import GamePlayersPanel from '../../organisms/GamePlayersPanel/GamePlayersPanel'
 import GameChatPanel from '../../organisms/GameChatPanel/GameChatPanel';
 import {useSubscription} from '@apollo/client';
 import {SYNC_GAME_SUBSCRIPTION} from '../../../graphql/game';
+import {updateCurrentGameData} from '../../../utils/game';
 
 const MainPage = () => {
   const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
@@ -26,7 +27,7 @@ const MainPage = () => {
     const game = data?.syncGameSubscription;
 
     if (game) {
-      console.log(game);
+      updateCurrentGameData(game);
     }
   }, [data]);
 

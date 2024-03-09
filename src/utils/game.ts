@@ -1,5 +1,12 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
-import {GamePeriods} from '../types/game';
+import {GamePeriods, GameResponse} from '../types/game';
+import store from '../store/store';
+import {updateCurrentGame} from '../store/game';
+
+export const updateCurrentGameData = (data: GameResponse) => {
+  localStorage.setItem('currentGame', JSON.stringify(data));
+  store.dispatch(updateCurrentGame(data));
+}
 
 export const gamePeriodColorsTable: ArbitraryObject<SystemPresetColors> = {
   [GamePeriods.START]: 'gray',

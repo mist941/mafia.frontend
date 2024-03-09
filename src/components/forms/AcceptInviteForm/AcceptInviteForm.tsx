@@ -5,8 +5,7 @@ import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {ADD_NEW_PLAYER} from '../../../graphql/game';
 import {GameResponse} from '../../../types/game';
-import {updateCurrentGame} from '../../../store/game';
-import {useDispatch} from 'react-redux';
+import {updateCurrentGameData} from '../../../utils/game';
 
 type AcceptInviteForm = {
   game: CurrentInviteGame;
@@ -14,17 +13,19 @@ type AcceptInviteForm = {
 }
 
 const AcceptInviteForm: FC<AcceptInviteForm> = ({game, close}) => {
-  const dispatch = useDispatch();
   const [addNewPlayer] = useMutation(ADD_NEW_PLAYER);
 
   const accept = async () => {
     const addNewPlayerResponse: FetchResult<{ addNewPlayer: GameResponse }> = await addNewPlayer({
-      variables: {gameId: game.id},
+      variables: {
+        addNewPlayerInput: {
+          gameId: game.id
+        }
+      },
     });
 
     if (addNewPlayerResponse.data?.addNewPlayer) {
-      dispatch(updateCurrentGame(addNewPlayerResponse.data?.addNewPlayer));
-      localStorage.setItem('currentGame', JSON.stringify(addNewPlayerResponse.data?.addNewPlayer));
+      updateCurrentGameData(addNewPlayerResponse.data?.addNewPlayer);
       close();
     }
 
