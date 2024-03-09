@@ -76,3 +76,32 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
         }
   }
 `;
+
+export const ADD_NEW_PLAYER = gql`
+    mutation AddNewPlayer($addNewPlayerInput: AddNewPlayerRequestDTO!){
+        addNewPlayer(addNewPlayerInput: $addNewPlayerInput){
+            game {
+                id
+                name
+                numberOfPlayers
+                ownerId
+                currentPeriod
+                currentRole
+                private
+                createdAt
+            }
+            player {
+                id
+                role
+                status
+            }
+            players {
+                id
+                role
+                status
+                userId
+                username
+            }
+        }
+    }
+`;

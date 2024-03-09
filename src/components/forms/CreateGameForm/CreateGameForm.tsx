@@ -7,7 +7,7 @@ import CheckboxField from '../../molecules/CheckboxField/CheckboxField';
 import {handleFormikErrors} from '../../../utils/common';
 import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
-import {CreateGameRequest, CreateGameResponse} from '../../../types/game';
+import {CreateGameRequest, GameResponse} from '../../../types/game';
 import {useDispatch} from 'react-redux';
 import {updateCurrentGame} from '../../../store/game';
 import {CREATE_GAME} from '../../../graphql/game';
@@ -37,7 +37,7 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({close}) => {
         .max(MAX_NUMBER_OF_PLAYERS, 'Maximum 19 players'),
     }),
     onSubmit: async (values: CreateGameRequest) => {
-      const createGameResponse: FetchResult<{ createGame: CreateGameResponse }> = await createGame({
+      const createGameResponse: FetchResult<{ createGame: GameResponse }> = await createGame({
         variables: {createGameInput: values},
       });
 

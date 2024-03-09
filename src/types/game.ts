@@ -31,7 +31,7 @@ export interface CreateGameRequest {
   private: boolean;
 }
 
-export type CreateGameResponse = CurrentGame;
+export type GameResponse = CurrentGame;
 
 export interface InvitePlayersResponse {
   gameId: Id;
