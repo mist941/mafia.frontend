@@ -91,7 +91,7 @@ const InviteUsersForm: FC<InviteUsersFormProps> = (
   return (
     <form className='formContainer' onSubmit={handleSubmit}>
       <Typography.Heading4>
-        Invite Users
+        Invite users
       </Typography.Heading4>
       <SearchDropDown
         search={updateSearchTerm}

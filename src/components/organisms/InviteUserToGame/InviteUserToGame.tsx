@@ -23,9 +23,11 @@ const InviteUserToGame = () => {
 
   return (
     <>
-      <Button styled='secondary' onClick={toggleInvitePopup}>
-        Invite users
-      </Button>
+      {maxUsersToInvite>0&&(
+        <Button styled='secondary' onClick={toggleInvitePopup}>
+          Invite users
+        </Button>
+      )}
       {isOpenInvitePopUp && (
         <ModalWindow close={toggleInvitePopup}>
           <InviteUsersForm

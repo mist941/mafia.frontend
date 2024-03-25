@@ -52,6 +52,11 @@
       background-color: var(--bg-secondary-pressed);
       color: var(--text-btn-secondary-pressed);
     }
+
+    &.disabled {
+      background-color: var(--bg-secondary-disable);
+      color: var(--text-btn-secondary-disable);
+    }
   }
 
   &.secondary-transparent {

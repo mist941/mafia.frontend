@@ -23,6 +23,7 @@ export type ButtonProps = {
  * @returns {JSX.Element} - The rendered button component
  */
 const Button: FC<ButtonProps> = ({styled = 'primary', size = 'm', ...rest}) => {
+
   return (
     <button
       {...rest}
