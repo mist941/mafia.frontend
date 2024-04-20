@@ -2,7 +2,6 @@ import React from 'react';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
-import {CurrentPlayer} from '../../../types/player';
 import Badge from '../../atoms/Badge/Badge';
 import {
   playerFullRoleNameTable,
@@ -13,10 +12,13 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
+import {CurrentGame} from '../../../types/game';
 
 const PlayerStatePanel = () => {
-  const currentPlayer = useSelector<RootState>
-  (state => state.game.currentGame?.player) as CurrentPlayer;
+  const {player: currentPlayer, game, players} = useSelector<RootState>
+  (state => state.game.currentGame) as CurrentGame;
+
+  const maxUsersToInvite: number = game.numberOfPlayers - players.length;
 
   return (
     <EssentialBlock className={styles.playerState}>
@@ -35,7 +37,7 @@ const PlayerStatePanel = () => {
           />
         </Tooltip>
       </div>
-      <InviteUserToGame/>
+      {maxUsersToInvite > 0 && <InviteUserToGame/>}
     </EssentialBlock>
   );
 };
