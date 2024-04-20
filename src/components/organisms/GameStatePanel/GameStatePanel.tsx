@@ -14,7 +14,7 @@ const GameStatePanel = () => {
   (state => state.game.currentGame?.game) as Game;
 
   return (
-    <EssentialBlock>
+    <EssentialBlock className={styles.gameState}>
       <div className={styles.leftSide}>
         <Tooltip text='Name of the game'>
           <Typography.Paragraph color='light'>{currentGame.name}</Typography.Paragraph>

@@ -23,7 +23,7 @@ const InviteUserToGame = () => {
 
   return (
     <>
-      {maxUsersToInvite>0&&(
+      {maxUsersToInvite > 0 && (
         <Button styled='secondary' onClick={toggleInvitePopup}>
           Invite users
         </Button>

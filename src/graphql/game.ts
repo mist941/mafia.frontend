@@ -99,6 +99,7 @@ export const ADD_NEW_PLAYER = gql`
                 role
                 status
                 userId
+                ready
                 username
             }
             players {
@@ -106,6 +107,7 @@ export const ADD_NEW_PLAYER = gql`
                 role
                 status
                 userId
+                ready
                 username
             }
         }
