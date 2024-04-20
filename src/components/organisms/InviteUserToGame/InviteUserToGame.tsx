@@ -16,7 +16,6 @@ const InviteUserToGame = () => {
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
   const alreadyAddedUserIds: Id[] = players.map((player: Player) => player.userId);
 
-
   const toggleInvitePopup = () => {
     setOpenInvitePopUp(prevState => !prevState);
   }
