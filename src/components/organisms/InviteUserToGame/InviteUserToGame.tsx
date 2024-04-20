@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import Button from '../../atoms/Button/Button';
 import ModalWindow from '../../molecules/ModalWindow/ModalWindow';
 import InviteUsersForm from '../../forms/InviteUsersForm/InviteUsersForm';
@@ -8,12 +8,15 @@ import {CurrentGame} from '../../../types/game';
 import {Id} from '../../../types/common';
 import {Player} from '../../../types/player';
 
-const InviteUserToGame = () => {
+type InviteUserToGameProps = {
+  maxUsersToInvite: number;
+}
+
+const InviteUserToGame: FC<InviteUserToGameProps> = ({maxUsersToInvite}) => {
   const {game, players} = useSelector<RootState>
   (state => state.game.currentGame) as CurrentGame;
   const [isOpenInvitePopUp, setOpenInvitePopUp] = useState<boolean>(false);
 
-  const maxUsersToInvite: number = game.numberOfPlayers - players.length;
   const alreadyAddedUserIds: Id[] = players.map((player: Player) => player.userId);
 
   const toggleInvitePopup = () => {

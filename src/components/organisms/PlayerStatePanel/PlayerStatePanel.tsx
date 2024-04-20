@@ -37,7 +37,7 @@ const PlayerStatePanel = () => {
           />
         </Tooltip>
       </div>
-      {maxUsersToInvite > 0 && <InviteUserToGame/>}
+      {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
     </EssentialBlock>
   );
 };
