@@ -13,12 +13,17 @@ import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
 import {CurrentGame} from '../../../types/game';
+import Button from '../../atoms/Button/Button';
 
 const PlayerStatePanel = () => {
   const {player: currentPlayer, game, players} = useSelector<RootState>
   (state => state.game.currentGame) as CurrentGame;
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
+
+  const readyToPlay = () => {
+
+  }
 
   return (
     <EssentialBlock className={styles.playerState}>
@@ -38,6 +43,11 @@ const PlayerStatePanel = () => {
         </Tooltip>
       </div>
       {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
+      {Number(game.numberOfPlayers) === players.length && (
+        <Button styled='secondary' onClick={readyToPlay}>
+          Ready to play
+        </Button>
+      )}
     </EssentialBlock>
   );
 };
