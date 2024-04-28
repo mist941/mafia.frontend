@@ -15,6 +15,7 @@ export interface Player {
   id: Id;
   role: PlayerRoles;
   status: PlayerStatuses;
+  ready: boolean;
   userId: Id;
   username: string;
 }

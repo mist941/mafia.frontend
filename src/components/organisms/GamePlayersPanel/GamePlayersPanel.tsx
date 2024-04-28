@@ -6,10 +6,12 @@ import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
 import {playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
 import Badge from '../../atoms/Badge/Badge';
-import {CurrentGame} from '../../../types/game';
+import {CurrentGame, GamePeriods} from '../../../types/game';
+import Typography from '../../atoms/Typography/Typography';
+import styles from './GamePlayersPanel.module.scss';
 
 const GamePlayersPanel = () => {
-  const {players, player: currentPlayer} =
+  const {players, player: currentPlayer, game} =
     useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
 
   const sortedPlayers = players.slice().sort((a: Player, b: Player) => {
@@ -18,17 +20,32 @@ const GamePlayersPanel = () => {
     return 0;
   });
 
+  const getReadyStatus = (player: Player) => {
+    if (
+      game.currentPeriod !== GamePeriods.START ||
+      Number(game.numberOfPlayers) !== players.length
+    ) return;
+    return (
+      <Typography.Paragraph size='xs' color={player.ready ? 'success' : 'error'}>
+        {player.ready ? 'Ready' : 'Not ready'}
+      </Typography.Paragraph>
+    );
+  }
+
   return (
     <TableConstructor<Player>
       settings={[
         {
           name: 'Name',
           render: (player) => (
-            <UserBadge
-              userId={player.userId}
-              username={player.username}
-              size='medium'
-            />
+            <div className={styles.playerInfo}>
+              <UserBadge
+                userId={player.userId}
+                username={player.username}
+                size='medium'
+              />
+              {getReadyStatus(player)}
+            </div>
           )
         },
         {
