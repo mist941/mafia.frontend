@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {User} from '../types/user';
 
-const userFromStorage = localStorage.getItem('currentUser');
+const userFromStorage = sessionStorage.getItem('currentUser');
 let currentUser: User | undefined;
 
 if (userFromStorage) {

@@ -1,7 +1,7 @@
 import {CurrentGame} from '../types/game';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-const gameFromStorage = localStorage.getItem('currentGame');
+const gameFromStorage = sessionStorage.getItem('currentGame');
 let currentGame: CurrentGame | undefined;
 
 if (gameFromStorage) {

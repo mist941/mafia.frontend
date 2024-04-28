@@ -23,7 +23,7 @@ const wsLink = new WebSocketLink({
   options: {
     reconnect: true,
     connectionParams: {
-      Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+      Authorization: `Bearer ${sessionStorage.getItem('accessToken') || ''}`,
     },
   },
 })
@@ -32,7 +32,7 @@ const authLink = new ApolloLink((operation, forward) => {
   operation.setContext(({headers = {}}) => ({
     headers: {
       ...headers,
-      authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+      authorization: `Bearer ${sessionStorage.getItem('accessToken') || ''}`,
     },
   }));
 

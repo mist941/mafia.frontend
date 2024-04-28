@@ -43,7 +43,7 @@ const CreateGameForm: FC<CreateRoomFormProps> = ({close}) => {
 
       if (createGameResponse.data?.createGame) {
         dispatch(updateCurrentGame(createGameResponse.data?.createGame));
-        localStorage.setItem('currentGame', JSON.stringify(createGameResponse.data?.createGame));
+        sessionStorage.setItem('currentGame', JSON.stringify(createGameResponse.data?.createGame));
         close();
       }
     },

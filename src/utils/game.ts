@@ -4,7 +4,7 @@ import store from '../store/store';
 import {updateCurrentGame} from '../store/game';
 
 export const updateCurrentGameData = (data: GameResponse) => {
-  localStorage.setItem('currentGame', JSON.stringify(data));
+  sessionStorage.setItem('currentGame', JSON.stringify(data));
   store.dispatch(updateCurrentGame(data));
 }
 
