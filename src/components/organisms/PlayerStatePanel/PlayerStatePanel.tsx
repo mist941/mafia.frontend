@@ -12,17 +12,32 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {CurrentGame} from '../../../types/game';
+import {CurrentGame, GameResponse} from '../../../types/game';
 import Button from '../../atoms/Button/Button';
+import {FetchResult, useMutation} from '@apollo/client';
+import {READY_TO_PLAY} from '../../../graphql/game';
+import {updateCurrentGameData} from '../../../utils/game';
 
 const PlayerStatePanel = () => {
   const {player: currentPlayer, game, players} = useSelector<RootState>
   (state => state.game.currentGame) as CurrentGame;
+  const [readyToPlay] = useMutation(READY_TO_PLAY);
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
 
-  const readyToPlay = () => {
+  const ready = async () => {
+    const readyToPlayResponse: FetchResult<{ readyToPlay: GameResponse }> = await readyToPlay({
+      variables: {
+        readyToPlayInput: {
+          gameId: game.id,
+          playerId: currentPlayer.id
+        }
+      },
+    });
 
+    if (readyToPlayResponse.data?.readyToPlay) {
+      updateCurrentGameData(readyToPlayResponse.data?.readyToPlay);
+    }
   }
 
   return (
@@ -44,7 +59,7 @@ const PlayerStatePanel = () => {
       </div>
       {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
       {Number(game.numberOfPlayers) === players.length && (
-        <Button styled='secondary' onClick={readyToPlay}>
+        <Button styled='secondary' onClick={ready}>
           Ready to play
         </Button>
       )}

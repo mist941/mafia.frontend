@@ -47,7 +47,7 @@ export const INVITE_PLAYERS_SUBSCRIPTION = gql`
             gameId
             gameName
         }
-  }
+    }
 `;
 
 export const SYNC_GAME_SUBSCRIPTION = gql`
@@ -69,6 +69,7 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -76,14 +77,48 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
+                ready
             }
         }
-  }
+    }
 `;
 
 export const ADD_NEW_PLAYER = gql`
     mutation AddNewPlayer($addNewPlayerInput: AddNewPlayerRequestDTO!){
         addNewPlayer(addNewPlayerInput: $addNewPlayerInput){
+            game {
+                id
+                name
+                numberOfPlayers
+                ownerId
+                currentPeriod
+                currentRole
+                private
+                createdAt
+            }
+            player {
+                id
+                role
+                status
+                userId
+                ready
+                username
+            }
+            players {
+                id
+                role
+                status
+                userId
+                ready
+                username
+            }
+        }
+    }
+`;
+
+export const READY_TO_PLAY = gql`
+    mutation ReadyToPlay($readyToPlayInput: ReadyToPlayRequestDTO!){
+        readyToPlay(readyToPlayInput: $readyToPlayInput){
             game {
                 id
                 name
