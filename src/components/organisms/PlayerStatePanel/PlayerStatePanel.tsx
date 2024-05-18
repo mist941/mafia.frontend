@@ -12,7 +12,7 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {CurrentGame, GameResponse} from '../../../types/game';
+import {CurrentGame, GamePeriods, GameResponse} from '../../../types/game';
 import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {READY_TO_PLAY} from '../../../graphql/game';
@@ -58,7 +58,7 @@ const PlayerStatePanel = () => {
         </Tooltip>
       </div>
       {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
-      {Number(game.numberOfPlayers) === players.length && (
+      {(Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START) && (
         <Button styled='secondary' onClick={ready}>
           Ready to play
         </Button>
