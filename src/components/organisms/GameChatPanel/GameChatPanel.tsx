@@ -1,11 +1,22 @@
 import React from 'react';
-import Typography from '../../atoms/Typography/Typography';
+import styles from './GameChatPanel.module.scss';
+
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
+import MassageInput from '../../molecules/MassageInput/MassageInput';
 
 const GameChatPanel = () => {
+  const sendMessage = (text: string): void => {
+    console.log(text)
+  }
+
   return (
-    <EssentialBlock>
-      <Typography.Paragraph size='m'>Chat</Typography.Paragraph>
+    <EssentialBlock className={styles.chatPanel}>
+      <div className={styles.messages}>
+        Chat
+      </div>
+      <div className={styles.inputArea}>
+        <MassageInput sendMessage={sendMessage}/>
+      </div>
     </EssentialBlock>
   );
 };
