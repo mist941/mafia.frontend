@@ -5,24 +5,24 @@ import {gameFullPeriodNameTable, gamePeriodColorsTable} from '../../../utils/gam
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
-import {Game} from '../../../types/game';
+import {CurrentGame} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GameStatePanel.module.scss';
 import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const GameStatePanel = () => {
-  const currentGame = useSelector<RootState>(selectCurrentGame) as Game;
+  const {game} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
 
   return (
     <EssentialBlock className={styles.gameState}>
       <div className={styles.leftSide}>
         <Tooltip text='Name of the game'>
-          <Typography.Paragraph color='light'>{currentGame.name}</Typography.Paragraph>
+          <Typography.Paragraph color='light'>{game.name}</Typography.Paragraph>
         </Tooltip>
         <Tooltip text='Current game period'>
           <Badge
-            text={gameFullPeriodNameTable[currentGame.currentPeriod]}
-            color={gamePeriodColorsTable[currentGame.currentPeriod]}
+            text={gameFullPeriodNameTable[game.currentPeriod]}
+            color={gamePeriodColorsTable[game.currentPeriod]}
           />
         </Tooltip>
       </div>
