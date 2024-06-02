@@ -1,4 +1,4 @@
-import {CurrentGame} from '../types/game';
+import {CurrentGame} from '../../types/game';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const gameFromStorage = sessionStorage.getItem('currentGame');

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {User} from '../types/user';
+import {User} from '../../types/user';
 
 const userFromStorage = sessionStorage.getItem('currentUser');
 let currentUser: User | undefined;

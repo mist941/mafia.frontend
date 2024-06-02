@@ -8,10 +8,10 @@ import {RootState} from '../../../store/store';
 import {Game} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GameStatePanel.module.scss';
+import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const GameStatePanel = () => {
-  const currentGame = useSelector<RootState>
-  (state => state.game.currentGame?.game) as Game;
+  const currentGame = useSelector<RootState>(selectCurrentGame) as Game;
 
   return (
     <EssentialBlock className={styles.gameState}>

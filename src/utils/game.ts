@@ -1,7 +1,7 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
 import {GamePeriods, GameResponse} from '../types/game';
 import store from '../store/store';
-import {updateCurrentGame} from '../store/game';
+import {updateCurrentGame} from '../store/game/game.reducer';
 
 export const updateCurrentGameData = (data: GameResponse) => {
   sessionStorage.setItem('currentGame', JSON.stringify(data));

@@ -9,10 +9,11 @@ import Badge from '../../atoms/Badge/Badge';
 import {CurrentGame, GamePeriods} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GamePlayersPanel.module.scss';
+import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const GamePlayersPanel = () => {
   const {players, player: currentPlayer, game} =
-    useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
+    useSelector<RootState>(selectCurrentGame) as CurrentGame;
 
   const sortedPlayers = players.slice().sort((a: Player, b: Player) => {
     if (b.id === currentPlayer.id) return 1;

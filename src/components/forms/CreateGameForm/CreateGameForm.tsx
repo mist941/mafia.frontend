@@ -9,8 +9,9 @@ import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {CreateGameRequest, GameResponse} from '../../../types/game';
 import {useDispatch} from 'react-redux';
-import {updateCurrentGame} from '../../../store/game';
+import {updateCurrentGame} from '../../../store/game/game.reducer';
 import {CREATE_GAME} from '../../../graphql/game';
+import {AppDispatch} from '../../../store/store';
 
 type CreateRoomFormProps = {
   close: () => void;
@@ -20,7 +21,7 @@ const MIN_NUMBER_OF_PLAYERS = 5;
 const MAX_NUMBER_OF_PLAYERS = 19;
 
 const CreateGameForm: FC<CreateRoomFormProps> = ({close}) => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const [createGame] = useMutation(CREATE_GAME);
 
   const formik = useFormik({

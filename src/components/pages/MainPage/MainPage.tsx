@@ -9,9 +9,10 @@ import PlayerStatePanel from '../../organisms/PlayerStatePanel/PlayerStatePanel'
 import GameStatePanel from '../../organisms/GameStatePanel/GameStatePanel';
 import GamePlayersPanel from '../../organisms/GamePlayersPanel/GamePlayersPanel';
 import GameChatPanel from '../../organisms/GameChatPanel/GameChatPanel';
+import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const MainPage = () => {
-  const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
+  const currentGame = useSelector<RootState>(selectCurrentGame) as CurrentGame;
 
   return (
     <MainTemplate>

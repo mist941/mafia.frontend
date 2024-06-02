@@ -1,5 +1,5 @@
 import {SignResponseI} from '../types/auth';
-import {updateCurrentUser} from '../store/user';
+import {updateCurrentUser} from '../store/user/user.reducer';
 import store from '../store/store';
 
 export const updateCurrentSessionData = (data: SignResponseI) => {

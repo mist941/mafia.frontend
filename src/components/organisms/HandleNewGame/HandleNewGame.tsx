@@ -8,10 +8,10 @@ import CreateGameForm from '../../forms/CreateGameForm/CreateGameForm';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {CurrentGame} from '../../../types/game';
+import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const HandleNewGame = () => {
-  const currentGame = useSelector<RootState>
-  (state => state.game.currentGame) as CurrentGame;
+  const currentGame = useSelector<RootState>(selectCurrentGame) as CurrentGame;
   const [isOpenCreationGamePopUp, setOpenCreationGamePopUp] = useState<boolean>(false);
 
   const toggleCreationRoomPopup = () => {

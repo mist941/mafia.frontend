@@ -6,9 +6,10 @@ import {useSubscription} from '@apollo/client';
 import {SYNC_MESSAGES_SUBSCRIPTION} from '../graphql/chat';
 import {Message} from '../types/chat';
 import {updateMessages} from '../utils/chat';
+import {selectCurrentGame} from '../store/game/game.selector';
 
 const useSyncChatSubscription = () => {
-  const currentGame = useSelector<RootState>(state => state.game.currentGame) as CurrentGame;
+  const currentGame = useSelector<RootState>(selectCurrentGame) as CurrentGame;
 
   const {data} = useSubscription<{ syncMessagesSubscription: Message }>(SYNC_MESSAGES_SUBSCRIPTION, {
     variables: {

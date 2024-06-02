@@ -17,10 +17,10 @@ import Button from '../../atoms/Button/Button';
 import {FetchResult, useMutation} from '@apollo/client';
 import {READY_TO_PLAY} from '../../../graphql/game';
 import {updateCurrentGameData} from '../../../utils/game';
+import {selectCurrentGame} from '../../../store/game/game.selector';
 
 const PlayerStatePanel = () => {
-  const {player: currentPlayer, game, players} = useSelector<RootState>
-  (state => state.game.currentGame) as CurrentGame;
+  const {player: currentPlayer, game, players} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
   const [readyToPlay] = useMutation(READY_TO_PLAY);
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
