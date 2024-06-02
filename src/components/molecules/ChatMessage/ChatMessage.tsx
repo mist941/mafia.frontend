@@ -32,8 +32,11 @@ const ChatMessage: FC<MessageProps> = ({data}) => {
         size='xs'
         weight='bold'
         color='light-blue'
+        className={styles.username}
         style={{
-          color: currentUser.id !== data.user.id ? stringToColor(data.user.id) : undefined
+          color: currentUser.id !== data.user.id ?
+            stringToColor(data.user.id) :
+            undefined
         }}
       >
         {currentUser.id === data.user.id ? 'You' : data.user.username}
@@ -41,6 +44,7 @@ const ChatMessage: FC<MessageProps> = ({data}) => {
       <Typography.Paragraph
         size='m'
         color='light'
+        className={styles.text}
       >
         {data.text}
       </Typography.Paragraph>
