@@ -1,0 +1,12 @@
+.message {
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--bg-light);
+  border-bottom-left-radius: 0;
+
+  &.ownMessage {
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 0;
+    align-self: end;
+  }
+}

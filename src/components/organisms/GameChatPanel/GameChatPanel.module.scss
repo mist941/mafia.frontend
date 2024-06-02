@@ -5,9 +5,9 @@
 }
 
 .messages {
-  height: calc(100%);
-}
-
-.inputArea{
-
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 12px;
 }
