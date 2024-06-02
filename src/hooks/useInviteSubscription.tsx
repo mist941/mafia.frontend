@@ -8,6 +8,7 @@ import {InvitePlayersResponse} from '../types/game';
 import {Id} from '../types/common';
 import ModalWindow from '../components/molecules/ModalWindow/ModalWindow';
 import AcceptInviteForm from '../components/forms/AcceptInviteForm/AcceptInviteForm';
+import {selectCurrentUser} from '../store/user/user.selector';
 
 export type CurrentInviteGame = {
   id: Id;
@@ -17,7 +18,7 @@ export type CurrentInviteGame = {
 export const useInviteSubscription = () => {
   const [currentInviteGame, setCurrentInviteGame] =
     useState<CurrentInviteGame | null>(null);
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
+  const currentUser = useSelector<RootState>(selectCurrentUser) as User;
   const {data} = useSubscription<{ invitePlayersSubscription: InvitePlayersResponse }>(INVITE_PLAYERS_SUBSCRIPTION, {
     variables: {
       userId: currentUser?.id,

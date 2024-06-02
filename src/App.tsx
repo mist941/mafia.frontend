@@ -8,12 +8,13 @@ import paths from './routing/paths';
 import {useInviteSubscription} from './hooks/useInviteSubscription';
 import useSyncGameSubscription from './hooks/useSyncGameSubscription';
 import useSyncChatSubscription from './hooks/useSyncChatSubscription';
+import {selectCurrentUser} from './store/user/user.selector';
 
 function App() {
   useSyncGameSubscription();
   useSyncChatSubscription();
   const invitePopUp = useInviteSubscription();
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
+  const currentUser = useSelector<RootState>(selectCurrentUser) as User;
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'light');

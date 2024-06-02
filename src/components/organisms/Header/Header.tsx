@@ -7,9 +7,10 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {User} from '../../../types/user';
 import HandleNewGame from '../HandleNewGame/HandleNewGame';
+import {selectCurrentUser} from '../../../store/user/user.selector';
 
 const Header = () => {
-  const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
+  const currentUser = useSelector<RootState>(selectCurrentUser) as User;
 
   return (
     <EssentialBlock padding='12px 24px'>
