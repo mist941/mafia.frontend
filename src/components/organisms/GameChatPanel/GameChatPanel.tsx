@@ -3,10 +3,26 @@ import styles from './GameChatPanel.module.scss';
 
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import MassageInput from '../../molecules/MassageInput/MassageInput';
+import {useMutation} from '@apollo/client';
+import {CREATE_MESSAGE} from '../../../graphql/chat';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
+import {Game} from '../../../types/game';
 
 const GameChatPanel = () => {
+  const [createMessage] = useMutation(CREATE_MESSAGE);
+  const currentGame = useSelector<RootState>
+  (state => state.game.currentGame?.game) as Game;
+
   const sendMessage = (text: string): void => {
-    console.log(text)
+    createMessage({
+      variables: {
+        createMessageInput: {
+          gameId: currentGame.id,
+          text
+        }
+      },
+    });
   }
 
   return (

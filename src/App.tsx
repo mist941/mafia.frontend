@@ -6,8 +6,12 @@ import {RootState} from './store/store';
 import {User} from './types/user';
 import paths from './routing/paths';
 import {useInviteSubscription} from './hooks/useInviteSubscription';
+import useSyncGameSubscription from './hooks/useSyncGameSubscription';
+import useSyncChatSubscription from './hooks/useSyncChatSubscription';
 
 function App() {
+  useSyncGameSubscription();
+  useSyncChatSubscription();
   const invitePopUp = useInviteSubscription();
   const currentUser = useSelector<RootState>(state => state.user.currentUser) as User;
 
