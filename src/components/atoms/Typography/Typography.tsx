@@ -3,7 +3,15 @@ import styles from './Typography.module.scss';
 import classNames from 'classnames';
 
 type ParagraphSizes = 'xl' | 'l' | 'm' | 's' | 'xs';
-export type TypographyColors = 'base' | 'light' | 'success' | 'error' | 'secondary' | 'disable';
+export type TypographyColors =
+  'base'
+  | 'light'
+  | 'success'
+  | 'error'
+  | 'secondary'
+  | 'disable'
+  | 'light-blue'
+  | 'light-grey';
 type TypographyWeight = 'regular' | 'medium' | 'bold';
 
 type HeadingProps = {

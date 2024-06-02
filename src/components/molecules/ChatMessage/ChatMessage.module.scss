@@ -1,12 +1,21 @@
 .message {
+  max-width: 50%;
   width: fit-content;
   height: fit-content;
-  background-color: var(--bg-light);
+  background-color: var(--bg-sb-teal);
   border-bottom-left-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 
   &.ownMessage {
+    background-color: var(--bg-sb-indigo);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 0;
     align-self: end;
   }
+}
+
+.date {
+  align-self: end;
 }

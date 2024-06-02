@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {selectCurrentUser} from '../../../store/user/user.selector';
 import {User} from '../../../types/user';
+import moment from 'moment';
 
 type MessageProps = {
   data: Message;
@@ -26,7 +27,26 @@ const ChatMessage: FC<MessageProps> = ({data}) => {
       )}
       padding='8px'
     >
-      <Typography.Paragraph size='l'>{data.text}</Typography.Paragraph>
+      <Typography.Paragraph
+        color='light-blue'
+        size='xs'
+        weight='bold'
+      >
+        {currentUser.id === data.user.id ? 'You' : data.user.username}
+      </Typography.Paragraph>
+      <Typography.Paragraph
+        size='m'
+        color='light'
+      >
+        {data.text}
+      </Typography.Paragraph>
+      <Typography.Paragraph
+        color='light-grey'
+        size='xs'
+        className={styles.date}
+      >
+        {moment(data.createdAt).format('HH:mm')}
+      </Typography.Paragraph>
     </EssentialBlock>
   );
 };
