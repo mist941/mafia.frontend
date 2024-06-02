@@ -8,6 +8,10 @@
   flex-direction: column;
   gap: 3px;
 
+  &:first-child {
+    margin-top: auto;
+  }
+
   &.ownMessage {
     background-color: var(--bg-sb-indigo);
     border-bottom-left-radius: 16px;

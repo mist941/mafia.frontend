@@ -3,7 +3,7 @@
   display: grid;
   grid-auto-rows: 1fr;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto calc(100% - 88px);
   gap: 16px;
   grid-template-areas:
     "Player Game"

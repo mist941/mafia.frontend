@@ -33,7 +33,9 @@ const GameChatPanel = () => {
       <div className={styles.messages}>
         {messages.map(message => <ChatMessage key={message.id} data={message}/>)}
       </div>
-      <MassageInput sendMessage={sendMessage}/>
+      <div className={styles.messageInput}>
+        <MassageInput sendMessage={sendMessage}/>
+      </div>
     </EssentialBlock>
   );
 };

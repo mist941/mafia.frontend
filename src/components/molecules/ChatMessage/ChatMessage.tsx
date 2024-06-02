@@ -9,6 +9,7 @@ import {RootState} from '../../../store/store';
 import {selectCurrentUser} from '../../../store/user/user.selector';
 import {User} from '../../../types/user';
 import moment from 'moment';
+import stringToColor from 'string-to-color';
 
 type MessageProps = {
   data: Message;
@@ -28,9 +29,12 @@ const ChatMessage: FC<MessageProps> = ({data}) => {
       padding='8px'
     >
       <Typography.Paragraph
-        color='light-blue'
         size='xs'
         weight='bold'
+        color='light-blue'
+        style={{
+          color: currentUser.id !== data.user.id ? stringToColor(data.user.id) : undefined
+        }}
       >
         {currentUser.id === data.user.id ? 'You' : data.user.username}
       </Typography.Paragraph>

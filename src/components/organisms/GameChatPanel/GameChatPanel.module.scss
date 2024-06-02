@@ -2,12 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow: hidden;
+  padding: 16px 5px !important;
 }
 
 .messages {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: end;
   gap: 12px;
+  overflow-y: auto;
+  height: 100%;
+  padding: 0 16px;
+}
+
+.messageInput {
+  padding: 0 11px;
 }
