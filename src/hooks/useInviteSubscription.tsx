@@ -16,8 +16,7 @@ export type CurrentInviteGame = {
 }
 
 export const useInviteSubscription = () => {
-  const [currentInviteGame, setCurrentInviteGame] =
-    useState<CurrentInviteGame | null>(null);
+  const [currentInviteGame, setCurrentInviteGame] = useState<CurrentInviteGame | null>(null);
   const currentUser = useSelector<RootState>(selectCurrentUser) as User;
   const {data} = useSubscription<{ invitePlayersSubscription: InvitePlayersResponse }>(INVITE_PLAYERS_SUBSCRIPTION, {
     variables: {
