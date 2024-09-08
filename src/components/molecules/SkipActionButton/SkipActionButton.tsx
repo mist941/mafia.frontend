@@ -7,6 +7,7 @@ import {CurrentGame, GameResponse} from '../../../types/game';
 import {FetchResult, useMutation} from '@apollo/client';
 import {CREATE_ACTION} from '../../../graphql/game';
 import {updateCurrentGameData} from '../../../utils/game';
+import {ActionTypes} from '../../../types/action';
 
 const SkipActionButton = () => {
   const {player: currentPlayer, game} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
@@ -17,7 +18,10 @@ const SkipActionButton = () => {
       variables: {
         createActionInput: {
           gameId: game.id,
-          playerId: currentPlayer.id
+          playerId: currentPlayer.id,
+          actionType: ActionTypes.SKIP,
+          step: game.step,
+          period: game.currentPeriod
         }
       },
     });

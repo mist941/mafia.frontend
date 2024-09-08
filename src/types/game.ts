@@ -17,6 +17,7 @@ export interface Game {
   currentRole: string;
   private: boolean;
   createdAt: Date;
+  step: number;
 }
 
 export interface CurrentGame {
