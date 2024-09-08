@@ -5,6 +5,7 @@ export const CREATE_GAME = gql`
         createGame(createGameInput: $createGameInput){
             game {
                 id
+                step
                 name
                 numberOfPlayers
                 ownerId
@@ -55,6 +56,7 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
         syncGameSubscription(gameId: $gameId playerId: $playerId) {
             game {
                 id
+                step
                 name
                 numberOfPlayers
                 ownerId
@@ -88,6 +90,7 @@ export const ADD_NEW_PLAYER = gql`
         addNewPlayer(addNewPlayerInput: $addNewPlayerInput){
             game {
                 id
+                step
                 name
                 numberOfPlayers
                 ownerId
@@ -121,6 +124,7 @@ export const READY_TO_PLAY = gql`
         readyToPlay(readyToPlayInput: $readyToPlayInput){
             game {
                 id
+                step
                 name
                 numberOfPlayers
                 ownerId
@@ -154,6 +158,7 @@ export const CREATE_ACTION = gql`
         createAction(createActionInput: $createActionInput){
             game {
                 id
+                step
                 name
                 numberOfPlayers
                 ownerId

@@ -30,6 +30,7 @@ export const allowedToSkipInTheNight: PlayerRoles[] = [
 ]
 
 export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
+  if (game.currentRole !== player.role) return false;
   if (player.madeAction) return false;
 
   if (game.currentPeriod === GamePeriods.NIGHT) {
