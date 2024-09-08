@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import Badge from '../../atoms/Badge/Badge';
 import {
+  isAllowedToPushReady,
   isAllowedToSkip,
   playerFullRoleNameTable,
   playerFullStatusNameTable,
@@ -13,7 +14,7 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {CurrentGame, GamePeriods} from '../../../types/game';
+import {CurrentGame} from '../../../types/game';
 import {selectCurrentGame} from '../../../store/game/game.selector';
 import ReadyToPlayButton from '../../molecules/ReadyToPlayButton/ReadyToPlayButton';
 import SkipActionButton from '../../molecules/SkipActionButton/SkipActionButton';
@@ -41,12 +42,8 @@ const PlayerStatePanel = () => {
         </Tooltip>
       </div>
       {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
-      {(Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START) && (
-        <ReadyToPlayButton/>
-      )}
-      {isAllowedToSkip(game, currentPlayer) && (
-        <SkipActionButton/>
-      )}
+      {isAllowedToPushReady(game, players, currentPlayer) && <ReadyToPlayButton/>}
+      {isAllowedToSkip(game, currentPlayer) && <SkipActionButton/>}
     </EssentialBlock>
   );
 };

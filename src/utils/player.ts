@@ -1,5 +1,5 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
-import {CurrentPlayer, PlayerRoles, PlayerStatuses} from '../types/player';
+import {CurrentPlayer, Player, PlayerRoles, PlayerStatuses} from '../types/player';
 import {Game, GamePeriods} from '../types/game';
 
 export const playerRoleColorsTable: ArbitraryObject<SystemPresetColors> = {
@@ -29,13 +29,18 @@ export const allowedToSkipInTheNight: PlayerRoles[] = [
   PlayerRoles.DOCTOR
 ]
 
-export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
-  if (game.currentRole !== player.role) return false;
-  if (player.madeAction) return false;
+export const isAllowedToPushReady = (game: Game, players: Player[], player: CurrentPlayer) => {
+  if (player.ready) return false;
+  return Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START;
+}
 
+export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
+  if (game.currentPeriod === GamePeriods.START || game.currentPeriod === GamePeriods.START) return false;
+  if (game.currentPeriod === GamePeriods.DAY && !player.madeAction) return true;
+  if (game.currentPeriod === GamePeriods.NIGHT && game.currentRole !== player.role) return false;
   if (game.currentPeriod === GamePeriods.NIGHT) {
     return allowedToSkipInTheNight.includes(player.role);
   }
 
-  return game.currentPeriod === GamePeriods.DAY;
+  return !player.madeAction;
 }

@@ -16,6 +16,7 @@ export const CREATE_GAME = gql`
             }
             player {
                 id
+                madeAction
                 role
                 status
                 userId
@@ -67,6 +68,7 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
             }
             player {
                 id
+                madeAction
                 role
                 status
                 userId
@@ -101,6 +103,7 @@ export const ADD_NEW_PLAYER = gql`
             }
             player {
                 id
+                madeAction
                 role
                 status
                 userId
@@ -135,6 +138,7 @@ export const READY_TO_PLAY = gql`
             }
             player {
                 id
+                madeAction
                 role
                 status
                 userId
@@ -169,6 +173,7 @@ export const CREATE_ACTION = gql`
             }
             player {
                 id
+                madeAction
                 role
                 status
                 userId
