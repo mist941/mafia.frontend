@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import Badge from '../../atoms/Badge/Badge';
 import {
+  isAllowedToSkip,
   playerFullRoleNameTable,
   playerFullStatusNameTable,
   playerRoleColorsTable,
@@ -12,33 +13,15 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {CurrentGame, GamePeriods, GameResponse} from '../../../types/game';
-import Button from '../../atoms/Button/Button';
-import {FetchResult, useMutation} from '@apollo/client';
-import {READY_TO_PLAY} from '../../../graphql/game';
-import {updateCurrentGameData} from '../../../utils/game';
+import {CurrentGame, GamePeriods} from '../../../types/game';
 import {selectCurrentGame} from '../../../store/game/game.selector';
+import ReadyToPlayButton from '../../molecules/ReadyToPlayButton/ReadyToPlayButton';
+import SkipActionButton from '../../molecules/SkipActionButton/SkipActionButton';
 
 const PlayerStatePanel = () => {
   const {player: currentPlayer, game, players} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
-  const [readyToPlay] = useMutation(READY_TO_PLAY);
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
-
-  const ready = async () => {
-    const readyToPlayResponse: FetchResult<{ readyToPlay: GameResponse }> = await readyToPlay({
-      variables: {
-        readyToPlayInput: {
-          gameId: game.id,
-          playerId: currentPlayer.id
-        }
-      },
-    });
-
-    if (readyToPlayResponse.data?.readyToPlay) {
-      updateCurrentGameData(readyToPlayResponse.data?.readyToPlay);
-    }
-  }
 
   return (
     <EssentialBlock className={styles.playerState}>
@@ -59,9 +42,10 @@ const PlayerStatePanel = () => {
       </div>
       {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
       {(Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START) && (
-        <Button styled='secondary' onClick={ready}>
-          Ready to play
-        </Button>
+        <ReadyToPlayButton/>
+      )}
+      {isAllowedToSkip(game, currentPlayer) && (
+        <SkipActionButton/>
       )}
     </EssentialBlock>
   );

@@ -18,6 +18,7 @@ export interface Player {
   ready: boolean;
   userId: Id;
   username: string;
+  madeAction: boolean;
 }
 
 export type CurrentPlayer = Omit<Player, 'userId' | 'username'>;

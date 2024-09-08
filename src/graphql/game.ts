@@ -148,3 +148,36 @@ export const READY_TO_PLAY = gql`
         }
     }
 `;
+
+export const CREATE_ACTION = gql`
+    mutation ReadyToPlay($createActionInput: CreateActionRequestDTO!){
+        createAction(createActionInput: $createActionInput){
+            game {
+                id
+                name
+                numberOfPlayers
+                ownerId
+                currentPeriod
+                currentRole
+                private
+                createdAt
+            }
+            player {
+                id
+                role
+                status
+                userId
+                ready
+                username
+            }
+            players {
+                id
+                role
+                status
+                userId
+                ready
+                username
+            }
+        }
+    }
+`;
