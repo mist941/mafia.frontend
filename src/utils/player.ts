@@ -1,5 +1,6 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
-import {PlayerRoles, PlayerStatuses} from '../types/player';
+import {Player, PlayerRoles, PlayerStatuses} from '../types/player';
+import {Game, GamePeriods} from '../types/game';
 
 export const playerRoleColorsTable: ArbitraryObject<SystemPresetColors> = {
   [PlayerRoles.PEACEFUL_RESIDENT]: 'blue',
@@ -23,3 +24,15 @@ export const playerFullStatusNameTable: ArbitraryObject<string> = {
   [PlayerStatuses.KILLED]: 'Killed',
 }
 
+export const allowedToSkipInTheNight: PlayerRoles[] = [
+  PlayerRoles.MAFIA,
+  PlayerRoles.DOCTOR
+]
+
+export const isAllowedToSkip = (game: Game, player: Player): boolean => {
+  if (game.currentPeriod === GamePeriods.NIGHT) {
+    return allowedToSkipInTheNight.includes(player.role);
+  }
+
+  return game.currentPeriod === GamePeriods.DAY;
+}
