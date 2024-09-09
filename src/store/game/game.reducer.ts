@@ -23,9 +23,12 @@ const gameSlice = createSlice({
     updateCurrentGame: (state, action: PayloadAction<CurrentGame>) => {
       state.currentGame = action.payload;
     },
+    clearGame: (state) => {
+      state.currentGame = undefined;
+    },
   },
 });
 
-export const {updateCurrentGame} = gameSlice.actions;
+export const {updateCurrentGame, clearGame} = gameSlice.actions;
 
 export default gameSlice.reducer;

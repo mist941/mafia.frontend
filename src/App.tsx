@@ -9,10 +9,12 @@ import {useInviteSubscription} from './hooks/useInviteSubscription';
 import useSyncGameSubscription from './hooks/useSyncGameSubscription';
 import useSyncChatSubscription from './hooks/useSyncChatSubscription';
 import {selectCurrentUser} from './store/user/user.selector';
+import {useGetGameData} from './hooks/useGetGameData';
 
 function App() {
   useSyncGameSubscription();
   useSyncChatSubscription();
+  useGetGameData();
   const invitePopUp = useInviteSubscription();
   const currentUser = useSelector<RootState>(selectCurrentUser) as User;
 

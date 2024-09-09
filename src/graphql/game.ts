@@ -73,7 +73,6 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
-                ready
             }
             players {
                 id
@@ -81,7 +80,6 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
-                ready
             }
         }
     }
@@ -107,7 +105,6 @@ export const ADD_NEW_PLAYER = gql`
                 role
                 status
                 userId
-                ready
                 username
             }
             players {
@@ -115,7 +112,6 @@ export const ADD_NEW_PLAYER = gql`
                 role
                 status
                 userId
-                ready
                 username
             }
         }
@@ -142,7 +138,6 @@ export const READY_TO_PLAY = gql`
                 role
                 status
                 userId
-                ready
                 username
             }
             players {
@@ -150,7 +145,6 @@ export const READY_TO_PLAY = gql`
                 role
                 status
                 userId
-                ready
                 username
             }
         }
@@ -177,7 +171,6 @@ export const CREATE_ACTION = gql`
                 role
                 status
                 userId
-                ready
                 username
             }
             players {
@@ -185,7 +178,39 @@ export const CREATE_ACTION = gql`
                 role
                 status
                 userId
-                ready
+                username
+            }
+        }
+    }
+`;
+
+export const GET_GAME_DATA = gql`
+    query GetGameData($getGameDataInput: GetGameDataRequestDTO!){
+        getGameData(getGameDataInput: $getGameDataInput){
+            game {
+                id
+                step
+                name
+                numberOfPlayers
+                ownerId
+                currentPeriod
+                currentRole
+                private
+                createdAt
+            }
+            player {
+                id
+                madeAction
+                role
+                status
+                userId
+                username
+            }
+            players {
+                id
+                role
+                status
+                userId
                 username
             }
         }

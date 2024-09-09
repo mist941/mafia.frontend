@@ -1,11 +1,16 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
 import {GamePeriods, GameResponse} from '../types/game';
 import store from '../store/store';
-import {updateCurrentGame} from '../store/game/game.reducer';
+import {clearGame, updateCurrentGame} from '../store/game/game.reducer';
 
 export const updateCurrentGameData = (data: GameResponse) => {
   sessionStorage.setItem('currentGame', JSON.stringify(data));
   store.dispatch(updateCurrentGame(data));
+}
+
+export const clearGameData = () => {
+  sessionStorage.removeItem('currentGame');
+  store.dispatch(clearGame());
 }
 
 export const gamePeriodColorsTable: ArbitraryObject<SystemPresetColors> = {
