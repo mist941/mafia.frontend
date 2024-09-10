@@ -31,6 +31,7 @@ export const allowedToSkipInTheNight: PlayerRoles[] = [
 
 export const isAllowedToPushReady = (game: Game, players: Player[], player: CurrentPlayer) => {
   if (player.ready) return false;
+  if((game.currentPeriod === GamePeriods.DAY || game.currentPeriod === GamePeriods.NIGHT) && !player.ready) return true;
   return Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START;
 }
 

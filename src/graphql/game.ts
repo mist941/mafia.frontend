@@ -21,6 +21,7 @@ export const CREATE_GAME = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -28,6 +29,7 @@ export const CREATE_GAME = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
@@ -73,6 +75,7 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -80,6 +83,7 @@ export const SYNC_GAME_SUBSCRIPTION = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
@@ -106,6 +110,7 @@ export const ADD_NEW_PLAYER = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -113,6 +118,7 @@ export const ADD_NEW_PLAYER = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
@@ -139,6 +145,7 @@ export const READY_TO_PLAY = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -146,6 +153,7 @@ export const READY_TO_PLAY = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
@@ -172,6 +180,7 @@ export const CREATE_ACTION = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -179,6 +188,7 @@ export const CREATE_ACTION = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
@@ -205,6 +215,7 @@ export const GET_GAME_DATA = gql`
                 status
                 userId
                 username
+                ready
             }
             players {
                 id
@@ -212,6 +223,7 @@ export const GET_GAME_DATA = gql`
                 status
                 userId
                 username
+                ready
             }
         }
     }
