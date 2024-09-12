@@ -85,4 +85,14 @@
       border: 1px solid var(--border-tertiary-pressed);
     }
   }
+
+  &.danger {
+    background-color: var(--bg-sb-red);
+    color: var(--bg-st-red);
+
+    &:hover {
+      background-color: var(--bg-st-red);
+      color: var(--text-on-color);
+    }
+  }
 }

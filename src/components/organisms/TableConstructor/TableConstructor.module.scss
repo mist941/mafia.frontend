@@ -4,7 +4,7 @@
   gap: 4px;
 }
 
-.header {
+.headerWrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,10 +14,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  height: 55px;
 
   &.disabled {
     opacity: .7;
     pointer-events: none;
     border: 1px solid var(--border-additionaly);
   }
+}
+
+.columnsWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rowExpansion {
+  display: flex;
+  justify-content: end;
 }

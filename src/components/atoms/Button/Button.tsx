@@ -2,7 +2,13 @@ import React, {ButtonHTMLAttributes, DetailedHTMLProps, FC} from 'react';
 import styles from './Button.module.scss';
 import classNames from 'classnames';
 
-type ButtonStyles = 'primary' | 'secondary' | 'tertiary' | 'secondary-transparent';
+type ButtonStyles =
+  'primary' |
+  'secondary' |
+  'tertiary' |
+  'secondary-transparent' |
+  'danger';
+
 type ButtonSizes = 'm' | 's' | 'xs';
 
 export type ButtonProps = {

@@ -31,7 +31,7 @@ export const allowedToSkipInTheNight: PlayerRoles[] = [
 
 export const isAllowedToPushReady = (game: Game, players: Player[], player: CurrentPlayer) => {
   if (player.ready) return false;
-  if((game.currentPeriod === GamePeriods.DAY || game.currentPeriod === GamePeriods.NIGHT) && !player.ready) return true;
+  if ((game.currentPeriod === GamePeriods.DAY || game.currentPeriod === GamePeriods.NIGHT) && !player.ready) return true;
   return Number(game.numberOfPlayers) === players.length && game.currentPeriod === GamePeriods.START;
 }
 
@@ -44,4 +44,12 @@ export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
   }
 
   return !player.madeAction;
+}
+
+export const isAllowedToKill = (game: Game, player: CurrentPlayer): boolean => {
+  return (
+    game.currentPeriod === GamePeriods.NIGHT &&
+    game.currentRole === player.role &&
+    player.role === PlayerRoles.MAFIA
+  );
 }

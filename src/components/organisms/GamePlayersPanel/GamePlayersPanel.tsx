@@ -4,12 +4,13 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
-import {playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
+import {isAllowedToKill, playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
 import Badge from '../../atoms/Badge/Badge';
 import {CurrentGame, GamePeriods} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GamePlayersPanel.module.scss';
 import {selectCurrentGame} from '../../../store/game/game.selector';
+import Button from '../../atoms/Button/Button';
 
 const GamePlayersPanel = () => {
   const {players, player: currentPlayer, game} =
@@ -25,7 +26,9 @@ const GamePlayersPanel = () => {
     if (
       game.currentPeriod !== GamePeriods.START ||
       Number(game.numberOfPlayers) !== players.length
-    ) return;
+    ) {
+      return;
+    }
     return (
       <Typography.Paragraph size='xs' color={player.ready ? 'success' : 'error'}>
         {player.ready ? 'Ready' : 'Not ready'}
@@ -61,6 +64,16 @@ const GamePlayersPanel = () => {
           )
         }
       ]}
+      rowExpansion={(data: Player) => {
+        if (isAllowedToKill(game, currentPlayer)){
+          return (
+            <Button styled='danger' size='xs'>
+              Kill
+            </Button>
+          )
+        }
+        return data.username;
+      }}
       options={sortedPlayers}
       disabledRow={(player) => {
         return player.id === currentPlayer.id;

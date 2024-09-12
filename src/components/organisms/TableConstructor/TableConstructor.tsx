@@ -13,28 +13,41 @@ type TableConstructorProps<OptionType> = {
   options: OptionType[],
   settings: TableSetting<OptionType>[],
   disabledRow?: (option: OptionType) => boolean;
+  rowExpansion?: (option: OptionType) => ReactNode;
 };
 
 const TABLE_PADDING = '12px 24px';
+
 
 const TableConstructor = <OptionType, >(
   {
     options,
     settings,
-    disabledRow
+    disabledRow,
+    rowExpansion
   }: TableConstructorProps<OptionType>
 ) => {
   const columnNames = settings.map(setting => setting.name);
   const columnWidthInPercent = `${100 / settings.length}%`;
+  let expansionSafeAreaWidth = 0;
+
+  if (rowExpansion) {
+    expansionSafeAreaWidth = 100;
+  }
 
   return (
     <div className={styles.tableConstructor}>
-      <EssentialBlock padding={TABLE_PADDING} className={styles.header}>
-        {columnNames.map((name, index) => (
-          <div key={index} className={styles.column} style={{width: columnWidthInPercent}}>
-            <Typography.Paragraph size='s' color='disable'>{name}</Typography.Paragraph>
-          </div>
-        ))}
+      <EssentialBlock padding={TABLE_PADDING}>
+        <div
+          className={styles.headerWrap}
+          style={{width: `calc(100% - ${expansionSafeAreaWidth}px)`}}
+        >
+          {columnNames.map((name, index) => (
+            <div key={index} className={styles.column} style={{width: columnWidthInPercent}}>
+              <Typography.Paragraph size='s' color='disable'>{name}</Typography.Paragraph>
+            </div>
+          ))}
+        </div>
       </EssentialBlock>
       {options.map((option, optionIndex) => (
         <EssentialBlock
@@ -45,11 +58,24 @@ const TableConstructor = <OptionType, >(
             {[styles.disabled]: disabledRow && disabledRow(option)}
           )}
         >
-          {settings.map((setting, settingIndex) => (
-            <div key={settingIndex} className={styles.column} style={{width: columnWidthInPercent}}>
-              {setting.render(option)}
+          <div
+            className={styles.columnsWrap} 
+            style={{width: `calc(100% - ${expansionSafeAreaWidth}px)`}}
+          >
+            {settings.map((setting, settingIndex) => (
+              <div key={settingIndex} className={styles.column} style={{width: columnWidthInPercent}}>
+                {setting.render(option)}
+              </div>
+            ))}
+          </div>
+          {rowExpansion && (
+            <div
+              className={styles.rowExpansion}
+              style={{width: expansionSafeAreaWidth}}
+            >
+              {rowExpansion(option)}
             </div>
-          ))}
+          )}
         </EssentialBlock>
       ))}
     </div>
