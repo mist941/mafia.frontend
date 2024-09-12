@@ -62,3 +62,7 @@ export const isAllowedToHill = (game: Game, player: CurrentPlayer): boolean => {
     player.role === PlayerRoles.DOCTOR
   );
 }
+
+export const isAllowedToVote = (game: Game): boolean => {
+  return game.currentPeriod === GamePeriods.DAY;
+}

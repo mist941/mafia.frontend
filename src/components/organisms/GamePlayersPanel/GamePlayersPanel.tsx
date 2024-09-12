@@ -5,7 +5,7 @@ import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
 import {
   isAllowedToHill,
-  isAllowedToKill,
+  isAllowedToKill, isAllowedToVote,
   playerFullStatusNameTable,
   playerStatusColorsTable
 } from '../../../utils/player';
@@ -96,6 +96,18 @@ const GamePlayersPanel = () => {
             </MakeActionButton>
           );
         }
+        if (isAllowedToVote(game)){
+          return (
+            <MakeActionButton
+              actionType={ActionTypes.VOTE}
+              targetPlayerId={player.id}
+              styled='yellow'
+              size='xs'
+            >
+              Vote for kill
+            </MakeActionButton>
+          );
+        }
       }}
       rowDecoration={(player: Player) => {
         if (
@@ -112,6 +124,14 @@ const GamePlayersPanel = () => {
         ) {
           return {
             border: '1px solid var(--bg-st-teal)'
+          }
+        }
+        if (
+          currentAction?.targetPlayerId === player.id &&
+          currentAction.actionType === ActionTypes.VOTE
+        ) {
+          return {
+            border: '1px solid var(--bg-st-yellow)'
           }
         }
       }}

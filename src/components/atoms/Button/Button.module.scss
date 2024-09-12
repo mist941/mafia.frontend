@@ -105,4 +105,14 @@
       color: var(--text-on-color);
     }
   }
+
+  &.yellow {
+    background-color: var(--bg-sb-yellow);
+    color: var(--bg-st-yellow);
+
+    &:hover {
+      background-color: var(--bg-st-yellow);
+      color: var(--text-on-color);
+    }
+  }
 }
