@@ -9,7 +9,7 @@ if (messagesFromStorage) {
 }
 
 interface ChatState {
-  messages?: Message[];
+  messages: Message[];
 }
 
 const initialState: ChatState = {

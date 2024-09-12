@@ -1,5 +1,6 @@
 import {CurrentGame} from '../../types/game';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {StoreAction} from '../../types/action';
 
 const gameFromStorage = sessionStorage.getItem('currentGame');
 let currentGame: CurrentGame | undefined;
@@ -10,10 +11,12 @@ if (gameFromStorage) {
 
 interface GameState {
   currentGame?: CurrentGame;
+  currentAction?: StoreAction;
 }
 
 const initialState: GameState = {
-  currentGame
+  currentGame,
+  currentAction: undefined,
 };
 
 const gameSlice = createSlice({
@@ -26,9 +29,15 @@ const gameSlice = createSlice({
     clearGame: (state) => {
       state.currentGame = undefined;
     },
+    setAction: (state, action: PayloadAction<StoreAction>) => {
+      state.currentAction = action.payload;
+    },
+    clearAction: (state) => {
+      state.currentGame = undefined;
+    },
   },
 });
 
-export const {updateCurrentGame, clearGame} = gameSlice.actions;
+export const {updateCurrentGame, clearGame, setAction, clearAction} = gameSlice.actions;
 
 export default gameSlice.reducer;

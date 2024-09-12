@@ -5,17 +5,15 @@ import MassageInput from '../../molecules/MassageInput/MassageInput';
 import {useMutation} from '@apollo/client';
 import {CREATE_MESSAGE} from '../../../graphql/chat';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
-import {CurrentGame} from '../../../types/game';
 import {selectCurrentGame} from '../../../store/game/game.selector';
 import {selectMessages} from '../../../store/chat/chat.selector';
-import {Message} from '../../../types/chat';
 import ChatMessage from '../../molecules/ChatMessage/ChatMessage';
+import {CurrentGame} from '../../../types/game';
 
 const GameChatPanel = () => {
   const [createMessage] = useMutation(CREATE_MESSAGE);
-  const currentGame = useSelector<RootState>(selectCurrentGame) as CurrentGame;
-  const messages = useSelector<RootState>(selectMessages) as Message[];
+  const currentGame = useSelector(selectCurrentGame) as CurrentGame;
+  const messages = useSelector(selectMessages);
 
   const sendMessage = (text: string): void => {
     createMessage({

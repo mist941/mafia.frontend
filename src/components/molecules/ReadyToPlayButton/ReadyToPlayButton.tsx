@@ -4,12 +4,11 @@ import {FetchResult, useMutation} from '@apollo/client';
 import {CurrentGame, GameResponse} from '../../../types/game';
 import {updateCurrentGameData} from '../../../utils/game';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
 import {selectCurrentGame} from '../../../store/game/game.selector';
 import {READY_TO_PLAY} from '../../../graphql/game';
 
 const ReadyToPlayButton = () => {
-  const {player: currentPlayer, game} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
+  const {player: currentPlayer, game} = useSelector(selectCurrentGame) as CurrentGame;
   const [readyToPlay] = useMutation(READY_TO_PLAY);
 
   const ready = async () => {

@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {CSSProperties, ReactNode} from 'react';
 import styles from './TableConstructor.module.scss';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import Typography from '../../atoms/Typography/Typography';
@@ -14,6 +14,7 @@ type TableConstructorProps<OptionType> = {
   settings: TableSetting<OptionType>[],
   disabledRow?: (option: OptionType) => boolean;
   rowExpansion?: (option: OptionType) => ReactNode;
+  rowDecoration?: (option: OptionType) => CSSProperties | undefined;
 };
 
 const TABLE_PADDING = '12px 24px';
@@ -24,7 +25,8 @@ const TableConstructor = <OptionType, >(
     options,
     settings,
     disabledRow,
-    rowExpansion
+    rowExpansion,
+    rowDecoration
   }: TableConstructorProps<OptionType>
 ) => {
   const columnNames = settings.map(setting => setting.name);
@@ -57,6 +59,7 @@ const TableConstructor = <OptionType, >(
             styles.row,
             {[styles.disabled]: disabledRow && disabledRow(option)}
           )}
+          style={rowDecoration && rowDecoration(option)}
         >
           <div
             className={styles.columnsWrap} 

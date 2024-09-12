@@ -46,7 +46,8 @@ export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
   return !player.madeAction;
 }
 
-export const isAllowedToKill = (game: Game, player: CurrentPlayer): boolean => {
+export const isAllowedToKill = (game: Game, player: CurrentPlayer, targetPlayer: Player): boolean => {
+  if (targetPlayer.id === player.id) return false;
   return (
     game.currentPeriod === GamePeriods.NIGHT &&
     game.currentRole === player.role &&

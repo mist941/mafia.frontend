@@ -1,7 +1,6 @@
 import React from 'react';
 import TableConstructor from '../TableConstructor/TableConstructor';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
 import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
 import {isAllowedToKill, playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
@@ -9,12 +8,13 @@ import Badge from '../../atoms/Badge/Badge';
 import {CurrentGame, GamePeriods} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GamePlayersPanel.module.scss';
-import {selectCurrentGame} from '../../../store/game/game.selector';
+import {selectCurrentAction, selectCurrentGame} from '../../../store/game/game.selector';
 import Button from '../../atoms/Button/Button';
 
+
 const GamePlayersPanel = () => {
-  const {players, player: currentPlayer, game} =
-    useSelector<RootState>(selectCurrentGame) as CurrentGame;
+  const {players, player: currentPlayer, game} = useSelector(selectCurrentGame) as CurrentGame;
+  const currentAction = useSelector(selectCurrentAction);
 
   const sortedPlayers = players.slice().sort((a: Player, b: Player) => {
     if (b.id === currentPlayer.id) return 1;
@@ -64,15 +64,21 @@ const GamePlayersPanel = () => {
           )
         }
       ]}
-      rowExpansion={(data: Player) => {
-        if (isAllowedToKill(game, currentPlayer)){
+      rowExpansion={(player: Player) => {
+        if (isAllowedToKill(game, currentPlayer, player)) {
           return (
             <Button styled='danger' size='xs'>
               Kill
             </Button>
           )
         }
-        return data.username;
+      }}
+      rowDecoration={(player: Player) => {
+        if (currentAction?.targetPlayerId === player.id) {
+          return {
+            border: '1px solid var(--bg-st-red)'
+          }
+        }
       }}
       options={sortedPlayers}
       disabledRow={(player) => {

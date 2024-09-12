@@ -1,7 +1,6 @@
 import React from 'react';
 import EssentialBlock from '../../atoms/EssentialBlock/EssentialBlock';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
 import Badge from '../../atoms/Badge/Badge';
 import {
   isAllowedToPushReady,
@@ -14,13 +13,13 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {CurrentGame} from '../../../types/game';
 import {selectCurrentGame} from '../../../store/game/game.selector';
 import ReadyToPlayButton from '../../molecules/ReadyToPlayButton/ReadyToPlayButton';
 import SkipActionButton from '../../molecules/SkipActionButton/SkipActionButton';
+import {CurrentGame} from '../../../types/game';
 
 const PlayerStatePanel = () => {
-  const {player: currentPlayer, game, players} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
+  const {player: currentPlayer, game, players} = useSelector(selectCurrentGame) as CurrentGame;
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
 

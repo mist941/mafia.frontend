@@ -4,14 +4,13 @@ import Badge from '../../atoms/Badge/Badge';
 import {gameFullPeriodNameTable, gamePeriodColorsTable} from '../../../utils/game';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/store';
-import {CurrentGame} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GameStatePanel.module.scss';
 import {selectCurrentGame} from '../../../store/game/game.selector';
+import {CurrentGame} from '../../../types/game';
 
 const GameStatePanel = () => {
-  const {game} = useSelector<RootState>(selectCurrentGame) as CurrentGame;
+  const {game} = useSelector(selectCurrentGame) as CurrentGame;
 
   return (
     <EssentialBlock className={styles.gameState}>
