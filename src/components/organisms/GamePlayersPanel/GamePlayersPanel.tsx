@@ -3,13 +3,19 @@ import TableConstructor from '../TableConstructor/TableConstructor';
 import {useSelector} from 'react-redux';
 import {Player} from '../../../types/player';
 import UserBadge from '../../molecules/UserBadge/UserBadge';
-import {isAllowedToKill, playerFullStatusNameTable, playerStatusColorsTable} from '../../../utils/player';
+import {
+  isAllowedToHill,
+  isAllowedToKill,
+  playerFullStatusNameTable,
+  playerStatusColorsTable
+} from '../../../utils/player';
 import Badge from '../../atoms/Badge/Badge';
 import {CurrentGame, GamePeriods} from '../../../types/game';
 import Typography from '../../atoms/Typography/Typography';
 import styles from './GamePlayersPanel.module.scss';
 import {selectCurrentAction, selectCurrentGame} from '../../../store/game/game.selector';
-import Button from '../../atoms/Button/Button';
+import MakeActionButton from '../../molecules/MakeActionButton/MakeActionButton';
+import {ActionTypes} from '../../../types/action';
 
 
 const GamePlayersPanel = () => {
@@ -65,12 +71,30 @@ const GamePlayersPanel = () => {
         }
       ]}
       rowExpansion={(player: Player) => {
+        if (currentAction?.targetPlayerId === player.id) return;
         if (isAllowedToKill(game, currentPlayer, player)) {
           return (
-            <Button styled='danger' size='xs'>
+            <MakeActionButton
+              actionType={ActionTypes.KILL}
+              targetPlayerId={player.id}
+              styled='danger'
+              size='xs'
+            >
               Kill
-            </Button>
-          )
+            </MakeActionButton>
+          );
+        }
+        if (isAllowedToHill(game, currentPlayer)) {
+          return (
+            <MakeActionButton
+              actionType={ActionTypes.HILL}
+              targetPlayerId={player.id}
+              styled='danger'
+              size='xs'
+            >
+              Hill
+            </MakeActionButton>
+          );
         }
       }}
       rowDecoration={(player: Player) => {

@@ -1,6 +1,7 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
 import {CurrentPlayer, Player, PlayerRoles, PlayerStatuses} from '../types/player';
 import {Game, GamePeriods} from '../types/game';
+import {StoreAction} from '../types/action';
 
 export const playerRoleColorsTable: ArbitraryObject<SystemPresetColors> = {
   [PlayerRoles.PEACEFUL_RESIDENT]: 'blue',
@@ -52,5 +53,13 @@ export const isAllowedToKill = (game: Game, player: CurrentPlayer, targetPlayer:
     game.currentPeriod === GamePeriods.NIGHT &&
     game.currentRole === player.role &&
     player.role === PlayerRoles.MAFIA
+  );
+}
+
+export const isAllowedToHill = (game: Game, player: CurrentPlayer): boolean => {
+  return (
+    game.currentPeriod === GamePeriods.NIGHT &&
+    game.currentRole === player.role &&
+    player.role === PlayerRoles.DOCTOR
   );
 }
