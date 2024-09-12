@@ -33,7 +33,7 @@ const gameSlice = createSlice({
       state.currentAction = action.payload;
     },
     clearAction: (state) => {
-      state.currentGame = undefined;
+      state.currentAction = undefined;
     },
   },
 });

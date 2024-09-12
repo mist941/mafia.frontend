@@ -6,7 +6,7 @@ import {updateCurrentGameData} from '../utils/game';
 import {useSelector} from 'react-redux';
 import {selectCurrentGame} from '../store/game/game.selector';
 
-export const useMakePlayerAction = (action: ActionTypes) => {
+export const useMakePlayerAction = (action?: ActionTypes) => {
   const {player: currentPlayer, game} = useSelector(selectCurrentGame) as CurrentGame;
   const [createAction] = useMutation(CREATE_ACTION);
 

@@ -13,13 +13,15 @@ import {
 import styles from './PlayerStatePanel.module.scss';
 import Tooltip from '../../atoms/Tooltip/Tooltip';
 import InviteUserToGame from '../InviteUserToGame/InviteUserToGame';
-import {selectCurrentGame} from '../../../store/game/game.selector';
+import {selectCurrentAction, selectCurrentGame} from '../../../store/game/game.selector';
 import ReadyToPlayButton from '../../molecules/ReadyToPlayButton/ReadyToPlayButton';
 import SkipActionButton from '../../molecules/SkipActionButton/SkipActionButton';
 import {CurrentGame} from '../../../types/game';
+import ExecuteActionButton from '../../molecules/ExecuteActionButton/ExecuteActionButton';
 
 const PlayerStatePanel = () => {
   const {player: currentPlayer, game, players} = useSelector(selectCurrentGame) as CurrentGame;
+  const currentAction = useSelector(selectCurrentAction);
 
   const maxUsersToInvite: number = game.numberOfPlayers - players.length;
 
@@ -40,9 +42,12 @@ const PlayerStatePanel = () => {
           />
         </Tooltip>
       </div>
-      {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
-      {isAllowedToPushReady(game, players, currentPlayer) && <ReadyToPlayButton/>}
-      {isAllowedToSkip(game, currentPlayer) && <SkipActionButton/>}
+      <div className={styles.buttonsGroup}>
+        {maxUsersToInvite > 0 && <InviteUserToGame maxUsersToInvite={maxUsersToInvite}/>}
+        {isAllowedToPushReady(game, players, currentPlayer) && <ReadyToPlayButton/>}
+        {isAllowedToSkip(game, currentPlayer) && <SkipActionButton/>}
+        {currentAction && <ExecuteActionButton/>}
+      </div>
     </EssentialBlock>
   );
 };
