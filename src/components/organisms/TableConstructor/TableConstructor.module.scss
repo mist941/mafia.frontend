@@ -19,7 +19,6 @@
 
   &.disabled {
     opacity: .7;
-    pointer-events: none;
     border: 1px solid var(--border-additionaly);
   }
 }

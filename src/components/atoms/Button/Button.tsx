@@ -7,7 +7,8 @@ type ButtonStyles =
   'secondary' |
   'tertiary' |
   'secondary-transparent' |
-  'danger';
+  'danger'|
+  'teal';
 
 type ButtonSizes = 'm' | 's' | 'xs';
 

@@ -95,4 +95,14 @@
       color: var(--text-on-color);
     }
   }
+
+  &.teal {
+    background-color: var(--bg-sb-teal);
+    color: var(--bg-st-teal);
+
+    &:hover {
+      background-color: var(--bg-st-teal);
+      color: var(--text-on-color);
+    }
+  }
 }

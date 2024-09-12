@@ -1,7 +1,6 @@
 import {ArbitraryObject, SystemPresetColors} from '../types/common';
 import {CurrentPlayer, Player, PlayerRoles, PlayerStatuses} from '../types/player';
 import {Game, GamePeriods} from '../types/game';
-import {StoreAction} from '../types/action';
 
 export const playerRoleColorsTable: ArbitraryObject<SystemPresetColors> = {
   [PlayerRoles.PEACEFUL_RESIDENT]: 'blue',

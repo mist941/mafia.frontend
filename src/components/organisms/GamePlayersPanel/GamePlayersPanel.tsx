@@ -89,7 +89,7 @@ const GamePlayersPanel = () => {
             <MakeActionButton
               actionType={ActionTypes.HILL}
               targetPlayerId={player.id}
-              styled='danger'
+              styled='teal'
               size='xs'
             >
               Hill
@@ -98,9 +98,20 @@ const GamePlayersPanel = () => {
         }
       }}
       rowDecoration={(player: Player) => {
-        if (currentAction?.targetPlayerId === player.id) {
+        if (
+          currentAction?.targetPlayerId === player.id &&
+          currentAction.actionType === ActionTypes.KILL
+        ) {
           return {
             border: '1px solid var(--bg-st-red)'
+          }
+        }
+        if (
+          currentAction?.targetPlayerId === player.id &&
+          currentAction.actionType === ActionTypes.HILL
+        ) {
+          return {
+            border: '1px solid var(--bg-st-teal)'
           }
         }
       }}

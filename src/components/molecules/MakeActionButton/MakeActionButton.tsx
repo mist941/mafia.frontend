@@ -13,12 +13,14 @@ type MakeActionButtonProps = {
 
 const MakeActionButton: FC<MakeActionButtonProps> = ({actionType, targetPlayerId, ...rest}) => {
   const dispatch: AppDispatch = useDispatch();
+
   const makeAction = () => {
     dispatch(setAction({
       actionType,
       targetPlayerId
     }));
   }
+
   return <Button onClick={makeAction} {...rest}/>;
 };
 
