@@ -36,6 +36,7 @@ export const isAllowedToPushReady = (game: Game, players: Player[], player: Curr
 }
 
 export const isAllowedToSkip = (game: Game, player: CurrentPlayer): boolean => {
+  if (player.status !== PlayerStatuses.ACTIVE) return false;
   if (game.currentPeriod === GamePeriods.START || game.currentPeriod === GamePeriods.START) return false;
   if (game.currentPeriod === GamePeriods.DAY && !player.madeAction) return true;
   if (game.currentPeriod === GamePeriods.NIGHT && game.currentRole !== player.role) return false;
