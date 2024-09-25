@@ -84,7 +84,7 @@ const GamePlayersPanel = () => {
             </MakeActionButton>
           );
         }
-        if (isAllowedToHill(game, currentPlayer)) {
+        if (isAllowedToHill(game, currentPlayer, player)) {
           return (
             <MakeActionButton
               actionType={ActionTypes.HILL}
@@ -96,7 +96,7 @@ const GamePlayersPanel = () => {
             </MakeActionButton>
           );
         }
-        if (isAllowedToVote(game)){
+        if (isAllowedToVote(game, currentPlayer, player)){
           return (
             <MakeActionButton
               actionType={ActionTypes.VOTE}

@@ -5,8 +5,9 @@ import {ActionTypes} from '../types/action';
 import {updateCurrentGameData} from '../utils/game';
 import {useSelector} from 'react-redux';
 import {selectCurrentGame} from '../store/game/game.selector';
+import {Id} from '../types/common';
 
-export const useMakePlayerAction = (action?: ActionTypes) => {
+export const useMakePlayerAction = (action?: ActionTypes, targetPlayerId?: Id) => {
   const {player: currentPlayer, game} = useSelector(selectCurrentGame) as CurrentGame;
   const [createAction] = useMutation(CREATE_ACTION);
 
@@ -16,6 +17,7 @@ export const useMakePlayerAction = (action?: ActionTypes) => {
         createActionInput: {
           gameId: game.id,
           playerId: currentPlayer.id,
+          targetPlayerId,
           actionType: action,
           step: game.step,
           period: game.currentPeriod

@@ -51,18 +51,27 @@ export const isAllowedToKill = (game: Game, player: CurrentPlayer, targetPlayer:
   return (
     game.currentPeriod === GamePeriods.NIGHT &&
     game.currentRole === player.role &&
-    player.role === PlayerRoles.MAFIA
+    player.role === PlayerRoles.MAFIA &&
+    targetPlayer.status === PlayerStatuses.ACTIVE &&
+    player.status === PlayerStatuses.ACTIVE
   );
 }
 
-export const isAllowedToHill = (game: Game, player: CurrentPlayer): boolean => {
+export const isAllowedToHill = (game: Game, player: CurrentPlayer, targetPlayer: Player): boolean => {
   return (
     game.currentPeriod === GamePeriods.NIGHT &&
     game.currentRole === player.role &&
-    player.role === PlayerRoles.DOCTOR
+    player.role === PlayerRoles.DOCTOR &&
+    targetPlayer.status === PlayerStatuses.ACTIVE &&
+    player.status === PlayerStatuses.ACTIVE
   );
 }
 
-export const isAllowedToVote = (game: Game): boolean => {
-  return game.currentPeriod === GamePeriods.DAY;
+export const isAllowedToVote = (game: Game, player: CurrentPlayer, targetPlayer: Player): boolean => {
+  return (
+    game.currentPeriod === GamePeriods.DAY &&
+    !player.madeAction &&
+    targetPlayer.status === PlayerStatuses.ACTIVE &&
+    player.status === PlayerStatuses.ACTIVE
+  );
 }

@@ -9,7 +9,7 @@ import {clearAction} from '../../../store/game/game.reducer';
 const ExecuteActionButton = () => {
   const dispatch:AppDispatch = useDispatch();
   const currentAction = useSelector(selectCurrentAction);
-  const execute = useMakePlayerAction(currentAction?.actionType);
+  const execute = useMakePlayerAction(currentAction?.actionType, currentAction?.targetPlayerId);
 
   const executeAction = async ()=>{
     await execute();
